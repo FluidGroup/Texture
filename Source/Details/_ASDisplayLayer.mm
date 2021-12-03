@@ -13,6 +13,7 @@
 #import "ASAssert.h"
 #import "ASDisplayNode.h"
 #import "ASDisplayNodeInternal.h"
+#import "ASInternalHelpers.h"
 
 @implementation _ASDisplayLayer
 {
@@ -125,6 +126,8 @@
     return @YES;
   } else if ([key isEqualToString:@"opaque"]) {
     return @YES;
+  } else if ([key isEqualToString:@"contentsScale"]) {
+    return @(ASScreenScale());
   } else {
     return [super defaultValueForKey:key];
   }
