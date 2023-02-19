@@ -662,7 +662,7 @@ typedef void (^ASDataControllerSynchronizationBlock)();
 
   // Step 3 can be done on the main thread or on _editingTransactionQueue
   // depending on an experiment.
-  BOOL mainThreadOnly = ASActivateExperimentalFeature(ASExperimentalMainThreadOnlyDataController);
+  BOOL mainThreadOnly = self.isMainThreadModeEnabled || ASActivateExperimentalFeature(ASExperimentalMainThreadOnlyDataController);
   if (mainThreadOnly) {
     // In main-thread-only mode allocate and layout all nodes serially on the main thread.
     //

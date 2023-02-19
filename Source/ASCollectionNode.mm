@@ -432,6 +432,16 @@
   return _pendingState;
 }
 
+- (void)setIsMainThreadModeEnabled:(BOOL)isMainThreadModeEnabled
+{
+  self.dataController.isMainThreadModeEnabled = isMainThreadModeEnabled;
+}
+
+- (BOOL)isMainThreadModeEnabled
+{
+  return self.dataController.isMainThreadModeEnabled;
+}
+
 - (void)setInverted:(BOOL)inverted
 {
   self.transform = inverted ? CATransform3DMakeScale(1, -1, 1)  : CATransform3DIdentity;

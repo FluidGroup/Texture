@@ -160,6 +160,8 @@ ASDK_EXTERN NSString * const ASCollectionInvalidUpdateException;
 
 - (instancetype)init NS_UNAVAILABLE;
 
+@property (nonatomic) BOOL isMainThreadModeEnabled;
+
 /**
  * The node that owns this data controller, if any.
  *

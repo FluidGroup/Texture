@@ -76,6 +76,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, weak) id <ASCollectionDataSource> dataSource;
 
 /**
+ * A Boolean valut that indicates whether performs collection node as main thread only.
+ */
+@property (nonatomic) BOOL isMainThreadModeEnabled;
+
+/**
  * The number of screens left to scroll before the delegate -collectionNode:beginBatchFetchingWithContext: is called.
  *
  * Defaults to two screenfuls.
