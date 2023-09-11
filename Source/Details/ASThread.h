@@ -20,7 +20,7 @@
 #import "ASObjectDescriptionHelpers.h"
 #import "ASRecursiveUnfairLock.h"
 
-ASDISPLAYNODE_INLINE AS_WARN_UNUSED_RESULT BOOL ASDisplayNodeThreadIsMain()
+ASDISPLAYNODE_INLINE AS_WARN_UNUSED_RESULT BOOL ASDisplayNodeThreadIsMain(void)
 {
   return 0 != pthread_main_np();
 }
