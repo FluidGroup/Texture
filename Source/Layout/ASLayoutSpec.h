@@ -17,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * A layout spec is an immutable object that describes a layout, loosely inspired by React.
  */
-@interface ASLayoutSpec : NSObject <ASLayoutElement, ASLayoutElementStylability, NSFastEnumeration, ASDescriptionProvider, ASLocking> NS_SWIFT_SENDING
+NS_SWIFT_SENDING @interface ASLayoutSpec : NSObject <ASLayoutElement, ASLayoutElementStylability, NSFastEnumeration, ASDescriptionProvider, ASLocking>
 
 /** 
  * Creation of a layout spec should only happen by a user in layoutSpecThatFits:. During that method, a
