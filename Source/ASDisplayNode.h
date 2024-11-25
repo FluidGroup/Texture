@@ -34,7 +34,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * UIView creation block. Used to create the backing view of a new display node.
  */
-typedef NS_SWIFT_UI_ACTOR UIView * _Nonnull(^ASDisplayNodeViewBlock)(void);
+typedef UIView * _Nonnull(NS_SWIFT_UI_ACTOR ^ASDisplayNodeViewBlock)(void);
 
 /**
  * UIView creation block. Used to create the backing view of a new display node.
@@ -49,7 +49,7 @@ typedef CALayer * _Nonnull(^ASDisplayNodeLayerBlock)(void);
 /**
  * ASDisplayNode loaded callback block. This block is called BEFORE the -didLoad method and is always called on the main thread.
  */
-typedef NS_SWIFT_UI_ACTOR void (^ASDisplayNodeDidLoadBlock)(__kindof ASDisplayNode * node);
+typedef void (NS_SWIFT_UI_ACTOR ^ASDisplayNodeDidLoadBlock)(__kindof ASDisplayNode * node);
 
 /**
  * ASDisplayNode will / did render node content in context.
