@@ -49,7 +49,7 @@ typedef CALayer * _Nonnull(^ASDisplayNodeLayerBlock)(void);
 /**
  * ASDisplayNode loaded callback block. This block is called BEFORE the -didLoad method and is always called on the main thread.
  */
-typedef void (^ASDisplayNodeDidLoadBlock)(__kindof ASDisplayNode * node);
+typedef NS_SWIFT_UI_ACTOR void (^ASDisplayNodeDidLoadBlock)(__kindof ASDisplayNode * node);
 
 /**
  * ASDisplayNode will / did render node content in context.
@@ -209,7 +209,7 @@ ASDK_EXTERN NSInteger const ASDefaultDrawingPriority;
  * @warning The first access to it must be on the main thread, and should only be used on the main thread thereafter as 
  * well.
  */
-@property (readonly) UIView *view;
+@property (readonly) NS_SWIFT_UI_ACTOR UIView *view;
 
 /** 
  * @abstract Returns whether a node's backing view or layer is loaded.
@@ -234,7 +234,7 @@ ASDK_EXTERN NSInteger const ASDefaultDrawingPriority;
  * @warning The first access to it must be on the main thread, and should only be used on the main thread thereafter as 
  * well.
  */
-@property (readonly) CALayer * layer;
+@property (readonly) NS_SWIFT_UI_ACTOR CALayer * layer;
 
 /**
  * Returns YES if the node is – at least partially – visible in a window.
@@ -275,7 +275,7 @@ ASDK_EXTERN NSInteger const ASDefaultDrawingPriority;
  *
  * @see ASInterfaceState
  */
-- (void)addInterfaceStateDelegate:(id <ASInterfaceStateDelegate>)interfaceStateDelegate;
+- (NS_SWIFT_UI_ACTOR void)addInterfaceStateDelegate:(id <ASInterfaceStateDelegate>)interfaceStateDelegate;
 
 /**
  * @abstract Removes a delegate from receiving notifications on interfaceState changes.
@@ -284,7 +284,7 @@ ASDK_EXTERN NSInteger const ASDefaultDrawingPriority;
  *
  * @see ASInterfaceState
  */
-- (void)removeInterfaceStateDelegate:(id <ASInterfaceStateDelegate>)interfaceStateDelegate;
+- (NS_SWIFT_UI_ACTOR void)removeInterfaceStateDelegate:(id <ASInterfaceStateDelegate>)interfaceStateDelegate;
 
 /**
  * @abstract Class property that allows to set a block that can be called on non-fatal errors. This
@@ -917,7 +917,7 @@ typedef NS_ENUM(NSInteger, ASLayoutEngineType) {
  * @see animateLayoutTransition:
  *
  */
-- (void)transitionLayoutWithSizeRange:(ASSizeRange)constrainedSize
+- (NS_SWIFT_UI_ACTOR void)transitionLayoutWithSizeRange:(ASSizeRange)constrainedSize
                              animated:(BOOL)animated
                    shouldMeasureAsync:(BOOL)shouldMeasureAsync
                 measurementCompletion:(nullable void(^)(void))completion;

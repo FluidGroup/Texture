@@ -71,7 +71,7 @@ NS_ASSUME_NONNULL_BEGIN
  * @discussion This is the best time to add gesture recognizers to the view.
  */
 AS_CATEGORY_IMPLEMENTABLE
-- (void)didLoad ASDISPLAYNODE_REQUIRES_SUPER;
+- (void)didLoad ASDISPLAYNODE_REQUIRES_SUPER NS_SWIFT_UI_ACTOR;
 
 /**
  * An empty method that you can implement in a category to add global
@@ -95,7 +95,7 @@ AS_CATEGORY_IMPLEMENTABLE
  *
  * @discussion Subclasses override this method to layout all subnodes or subviews.
  */
-- (void)layout ASDISPLAYNODE_REQUIRES_SUPER;
+- (void)layout ASDISPLAYNODE_REQUIRES_SUPER NS_SWIFT_UI_ACTOR;
 
 /**
  * @abstract Called on the main thread by the view's -layoutSubviews, after -layout.
@@ -104,7 +104,8 @@ AS_CATEGORY_IMPLEMENTABLE
  * out.
  */
 AS_CATEGORY_IMPLEMENTABLE
-- (void)layoutDidFinish ASDISPLAYNODE_REQUIRES_SUPER;
+
+- (void)layoutDidFinish ASDISPLAYNODE_REQUIRES_SUPER NS_SWIFT_UI_ACTOR;
 
 /**
  * @abstract Called on a background thread if !isNodeLoaded - called on the main thread if isNodeLoaded.
@@ -255,7 +256,8 @@ AS_CATEGORY_IMPLEMENTABLE
  *
  * @note Called on the main thread only
  */
-- (nullable id<NSObject>)drawParametersForAsyncLayer:(_ASDisplayLayer *)layer;
+
+- (nullable id<NSObject>)drawParametersForAsyncLayer:(_ASDisplayLayer *)layer NS_SWIFT_UI_ACTOR;
 
 /**
  * @abstract Indicates that the receiver is about to display.
@@ -267,7 +269,8 @@ AS_CATEGORY_IMPLEMENTABLE
  *
  * @note Called on the main thread only
  */
-- (void)displayWillStart ASDISPLAYNODE_REQUIRES_SUPER ASDISPLAYNODE_DEPRECATED_MSG("Use displayWillStartAsynchronously: instead.");
+
+- (void)displayWillStart ASDISPLAYNODE_REQUIRES_SUPER ASDISPLAYNODE_DEPRECATED_MSG("Use displayWillStartAsynchronously: instead.") NS_SWIFT_UI_ACTOR;
 
 /**
  * @abstract Indicates that the receiver is about to display.
@@ -277,7 +280,8 @@ AS_CATEGORY_IMPLEMENTABLE
  *
  * @note Called on the main thread only
  */
-- (void)displayWillStartAsynchronously:(BOOL)asynchronously ASDISPLAYNODE_REQUIRES_SUPER;
+
+- (void)displayWillStartAsynchronously:(BOOL)asynchronously ASDISPLAYNODE_REQUIRES_SUPER NS_SWIFT_UI_ACTOR;
 
 /**
  * @abstract Indicates that the receiver has finished displaying.
@@ -317,7 +321,7 @@ AS_CATEGORY_IMPLEMENTABLE
  * @discussion Called by -recursivelyClearContents. Always called on main thread. Base class implements self.contents = nil, clearing any backing
  * store, for asynchronous regeneration when needed.
  */
-- (void)clearContents ASDISPLAYNODE_REQUIRES_SUPER;
+- (void)clearContents ASDISPLAYNODE_REQUIRES_SUPER NS_SWIFT_UI_ACTOR;
 
 /**
  * @abstract Indicates that the receiver is about to display its subnodes. This method is not called if there are no
