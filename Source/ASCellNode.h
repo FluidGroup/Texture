@@ -49,7 +49,7 @@ typedef NS_ENUM(NSUInteger, ASCellNodeVisibilityEvent) {
  * calling `-setNeedsLayout` will also notify the collection on the main thread
  * so that the collection can update its item layout if the cell's size changed.
  */
-@interface ASCellNode : ASDisplayNode
+@interface ASCellNode : ASDisplayNode, NS_SWIFT_SENDABLE
 
 /**
  * @abstract When enabled, ensures that the cell is completely displayed before allowed onscreen.

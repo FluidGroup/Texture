@@ -34,7 +34,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * UIView creation block. Used to create the backing view of a new display node.
  */
-typedef UIView * _Nonnull(NS_SWIFT_UI_ACTOR ^ASDisplayNodeViewBlock)(void);
+typedef NS_SWIFT_UI_ACTOR UIView * _Nonnull(NS_SWIFT_UI_ACTOR ^ASDisplayNodeViewBlock) (void);
 
 /**
  * UIView creation block. Used to create the backing view of a new display node.
