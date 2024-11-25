@@ -400,7 +400,7 @@ AS_CATEGORY_IMPLEMENTABLE
  * @param touches A set of UITouch instances.
  * @param event A UIEvent associated with the touch.
  */
-- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(nullable UIEvent *)event ASDISPLAYNODE_REQUIRES_SUPER;
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(nullable UIEvent *)event ASDISPLAYNODE_REQUIRES_SUPER NS_SWIFT_UI_ACTOR;
 
 /**
  * @abstract Tells the node when touches moved in its view.
@@ -408,7 +408,7 @@ AS_CATEGORY_IMPLEMENTABLE
  * @param touches A set of UITouch instances.
  * @param event A UIEvent associated with the touch.
  */
-- (void)touchesMoved:(NSSet<UITouch *> *)touches withEvent:(nullable UIEvent *)event ASDISPLAYNODE_REQUIRES_SUPER;
+- (void)touchesMoved:(NSSet<UITouch *> *)touches withEvent:(nullable UIEvent *)event ASDISPLAYNODE_REQUIRES_SUPER NS_SWIFT_UI_ACTOR;
 
 /**
  * @abstract Tells the node when touches ended in its view.
@@ -416,7 +416,7 @@ AS_CATEGORY_IMPLEMENTABLE
  * @param touches A set of UITouch instances.
  * @param event A UIEvent associated with the touch.
  */
-- (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(nullable UIEvent *)event ASDISPLAYNODE_REQUIRES_SUPER;
+- (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(nullable UIEvent *)event ASDISPLAYNODE_REQUIRES_SUPER NS_SWIFT_UI_ACTOR;
 
 /**
  * @abstract Tells the node when touches was cancelled in its view.
@@ -424,7 +424,7 @@ AS_CATEGORY_IMPLEMENTABLE
  * @param touches A set of UITouch instances.
  * @param event A UIEvent associated with the touch.
  */
-- (void)touchesCancelled:(nullable NSSet<UITouch *> *)touches withEvent:(nullable UIEvent *)event ASDISPLAYNODE_REQUIRES_SUPER;
+- (void)touchesCancelled:(nullable NSSet<UITouch *> *)touches withEvent:(nullable UIEvent *)event ASDISPLAYNODE_REQUIRES_SUPER NS_SWIFT_UI_ACTOR;
 
 
 #pragma mark - Managing Gesture Recognizers
@@ -455,7 +455,7 @@ AS_CATEGORY_IMPLEMENTABLE
  * 1) allows sending events to plain UIViews that don't have attached nodes,
  * 2) hitTest: is never called before the views are created.
  */
-- (nullable UIView *)hitTest:(CGPoint)point withEvent:(nullable UIEvent *)event;
+- (nullable UIView *)hitTest:(CGPoint)point withEvent:(nullable UIEvent *)event NS_SWIFT_UI_ACTOR;
 
 
 #pragma mark - Placeholders
