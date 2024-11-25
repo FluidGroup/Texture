@@ -764,7 +764,7 @@ ASDK_EXTERN NSInteger const ASDefaultDrawingPriority;
  */
 @property (readonly)         UIEdgeInsets safeAreaInsets;
 @property           BOOL insetsLayoutMarginsFromSafeArea;  // Default: YES
-- (void)safeAreaInsetsDidChange;
+- (void)safeAreaInsetsDidChange NS_SWIFT_UI_ACTOR;
 
 
 // UIResponder methods
@@ -917,10 +917,10 @@ typedef NS_ENUM(NSInteger, ASLayoutEngineType) {
  * @see animateLayoutTransition:
  *
  */
-- (NS_SWIFT_UI_ACTOR void)transitionLayoutWithSizeRange:(ASSizeRange)constrainedSize
+- (void)transitionLayoutWithSizeRange:(ASSizeRange)constrainedSize
                              animated:(BOOL)animated
                    shouldMeasureAsync:(BOOL)shouldMeasureAsync
-                measurementCompletion:(nullable void(^)(void))completion;
+                measurementCompletion:(nullable void(^)(void))completion NS_SWIFT_UI_ACTOR;
 
 
 /**
