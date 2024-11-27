@@ -281,7 +281,7 @@ AS_CATEGORY_IMPLEMENTABLE
  * @note Called on the main thread only
  */
 
-- (void)displayWillStartAsynchronously:(BOOL)asynchronously ASDISPLAYNODE_REQUIRES_SUPER NS_SWIFT_UI_ACTOR;
+- (NS_SWIFT_UI_ACTOR void)displayWillStartAsynchronously:(BOOL)asynchronously ASDISPLAYNODE_REQUIRES_SUPER NS_SWIFT_UI_ACTOR;
 
 /**
  * @abstract Indicates that the receiver has finished displaying.
@@ -291,7 +291,7 @@ AS_CATEGORY_IMPLEMENTABLE
  *
  * @note Called on the main thread only
  */
-- (void)displayDidFinish ASDISPLAYNODE_REQUIRES_SUPER;
+- (void)displayDidFinish ASDISPLAYNODE_REQUIRES_SUPER NS_SWIFT_UI_ACTOR;
 
 /**
  * Called just before the view is added to a window.
@@ -307,7 +307,7 @@ AS_CATEGORY_IMPLEMENTABLE
  * Called just after the view is added to a window.
  * Note: this may be called multiple times during view controller transitions. To overcome this: use didEnterVisibleState or its equavalents.
  */
-- (void)didEnterHierarchy ASDISPLAYNODE_REQUIRES_SUPER;
+- (void)didEnterHierarchy ASDISPLAYNODE_REQUIRES_SUPER NS_SWIFT_UI_ACTOR;
 
 /**
  * @abstract Whether the view or layer of this display node is currently in a window
