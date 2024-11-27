@@ -167,7 +167,7 @@ ASDK_EXTERN NSInteger const ASDefaultDrawingPriority;
  *
  * @precondition The node is not already loaded.
  */
-- (void)onDidLoad:(ASDisplayNodeDidLoadBlock)body;
+- (void)onDidLoad:(NS_SWIFT_UI_ACTOR ASDisplayNodeDidLoadBlock)body;
 
 /**
  * Set the block that should be used to load this node's view.
@@ -178,7 +178,7 @@ ASDK_EXTERN NSInteger const ASDefaultDrawingPriority;
  *
  * @note You will usually NOT call this. See the limitations documented in @c initWithViewBlock:
  */
-- (void)setViewBlock:(ASDisplayNodeViewBlock)viewBlock;
+- (void)setViewBlock:(NS_SWIFT_UI_ACTOR ASDisplayNodeViewBlock)viewBlock;
 
 /**
  * Set the block that should be used to load this node's layer.
