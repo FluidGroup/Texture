@@ -146,7 +146,7 @@ NS_ASSUME_NONNULL_BEGIN
  *                    Boolean parameter that contains the value YES if all of the related animations completed successfully or
  *                    NO if they were interrupted. This parameter may be nil. If supplied, the block is run on the main thread.
  */
-- (void)performBatchAnimated:(BOOL)animated updates:(nullable AS_NOESCAPE void (^)(void))updates completion:(nullable void (^)(BOOL finished))completion;
+- (void)performBatchAnimated:(BOOL)animated updates:(nullable AS_NOESCAPE void (^)(void))updates completion:(nullable NS_SWIFT_UI_ACTOR void ( ^)(BOOL finished))completion NS_SWIFT_UI_ACTOR;
 
 /**
  *  Perform a batch of updates asynchronously.  This method must be called from the main thread.
@@ -157,7 +157,7 @@ NS_ASSUME_NONNULL_BEGIN
  *                    Boolean parameter that contains the value YES if all of the related animations completed successfully or
  *                    NO if they were interrupted. This parameter may be nil. If supplied, the block is run on the main thread.
  */
-- (void)performBatchUpdates:(nullable AS_NOESCAPE void (^)(void))updates completion:(nullable void (^)(BOOL finished))completion;
+- (void)performBatchUpdates:(nullable AS_NOESCAPE void (^)(void))updates completion:(nullable NS_SWIFT_UI_ACTOR void (^)(BOOL finished))completion NS_SWIFT_UI_ACTOR;
 
 /**
  * Triggers a relayout of all nodes.
@@ -169,7 +169,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  *  Blocks execution of the main thread until all section and row updates are committed. This method must be called from the main thread.
  */
-- (void)waitUntilAllUpdatesAreCommitted;
+- (void)waitUntilAllUpdatesAreCommitted NS_SWIFT_UI_ACTOR;
 
 /**
  * Registers the given kind of supplementary node for use in creating node-backed supplementary views.
@@ -191,7 +191,7 @@ NS_ASSUME_NONNULL_BEGIN
  * @discussion This method must be called from the main thread. The asyncDataSource must be updated to reflect the changes
  * before this method is called.
  */
-- (void)insertSections:(NSIndexSet *)sections;
+- (void)insertSections:(NSIndexSet *)sections NS_SWIFT_UI_ACTOR;
 
 /**
  * Deletes one or more sections.
@@ -201,7 +201,7 @@ NS_ASSUME_NONNULL_BEGIN
  * @discussion This method must be called from the main thread. The asyncDataSource must be updated to reflect the changes
  * before this method is called.
  */
-- (void)deleteSections:(NSIndexSet *)sections;
+- (void)deleteSections:(NSIndexSet *)sections NS_SWIFT_UI_ACTOR;
 
 /**
  * Reloads the specified sections.
@@ -211,7 +211,7 @@ NS_ASSUME_NONNULL_BEGIN
  * @discussion This method must be called from the main thread. The asyncDataSource must be updated to reflect the changes
  * before this method is called.
  */
-- (void)reloadSections:(NSIndexSet *)sections;
+- (void)reloadSections:(NSIndexSet *)sections NS_SWIFT_UI_ACTOR;
 
 /**
  * Moves a section to a new location.
@@ -223,7 +223,7 @@ NS_ASSUME_NONNULL_BEGIN
  * @discussion This method must be called from the main thread. The asyncDataSource must be updated to reflect the changes
  * before this method is called.
  */
-- (void)moveSection:(NSInteger)section toSection:(NSInteger)newSection;
+- (void)moveSection:(NSInteger)section toSection:(NSInteger)newSection NS_SWIFT_UI_ACTOR;
 
 /**
  * Inserts items at the locations identified by an array of index paths.
@@ -233,7 +233,7 @@ NS_ASSUME_NONNULL_BEGIN
  * @discussion This method must be called from the main thread. The asyncDataSource must be updated to reflect the changes
  * before this method is called.
  */
-- (void)insertItemsAtIndexPaths:(NSArray<NSIndexPath *> *)indexPaths;
+- (void)insertItemsAtIndexPaths:(NSArray<NSIndexPath *> *)indexPaths NS_SWIFT_UI_ACTOR;
 
 /**
  * Deletes the items specified by an array of index paths.
@@ -243,7 +243,7 @@ NS_ASSUME_NONNULL_BEGIN
  * @discussion This method must be called from the main thread. The asyncDataSource must be updated to reflect the changes
  * before this method is called.
  */
-- (void)deleteItemsAtIndexPaths:(NSArray<NSIndexPath *> *)indexPaths;
+- (void)deleteItemsAtIndexPaths:(NSArray<NSIndexPath *> *)indexPaths NS_SWIFT_UI_ACTOR;
 
 /**
  * Reloads the specified items.
@@ -253,7 +253,7 @@ NS_ASSUME_NONNULL_BEGIN
  * @discussion This method must be called from the main thread. The asyncDataSource must be updated to reflect the changes
  * before this method is called.
  */
-- (void)reloadItemsAtIndexPaths:(NSArray<NSIndexPath *> *)indexPaths;
+- (void)reloadItemsAtIndexPaths:(NSArray<NSIndexPath *> *)indexPaths NS_SWIFT_UI_ACTOR;
 
 /**
  * Moves the item at a specified location to a destination location.
@@ -265,7 +265,7 @@ NS_ASSUME_NONNULL_BEGIN
  * @discussion This method must be called from the main thread. The asyncDataSource must be updated to reflect the changes
  * before this method is called.
  */
-- (void)moveItemAtIndexPath:(NSIndexPath *)indexPath toIndexPath:(NSIndexPath *)newIndexPath;
+- (void)moveItemAtIndexPath:(NSIndexPath *)indexPath toIndexPath:(NSIndexPath *)newIndexPath NS_SWIFT_UI_ACTOR;
 
 /**
  * Similar to -visibleCells.
