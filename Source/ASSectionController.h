@@ -47,7 +47,7 @@ NS_ASSUME_NONNULL_BEGIN
  *   not implement reuse (it will be called once per item).  Unlike UICollectionView's version,
  *   this method is not called when the item is about to display.
  */
-- (ASCellNode *)nodeForItemAtIndex:(NSInteger)index;
+- (ASCellNode *)nodeForItemAtIndex:(NSInteger)index NS_SWIFT_UI_ACTOR;
 
 /**
  * Asks the section controller whether it should batch fetch because the user is

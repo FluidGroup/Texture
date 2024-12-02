@@ -20,7 +20,7 @@
   NSUInteger _lastSuccessfulFrameIndex;
   
   //accessed on main thread only
-  CFTimeInterval _playHead;
+  NS_SWIFT_UI_ACTOR CFTimeInterval _playHead;
   NSUInteger _playedLoops;
 
   // Group the BOOLs into a bitfield struct to save memory.

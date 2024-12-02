@@ -49,7 +49,7 @@ typedef NS_ENUM(NSUInteger, ASCellNodeVisibilityEvent) {
  * calling `-setNeedsLayout` will also notify the collection on the main thread
  * so that the collection can update its item layout if the cell's size changed.
  */
-@interface ASCellNode : ASDisplayNode
+NS_SWIFT_SENDABLE @interface ASCellNode : ASDisplayNode
 
 /**
  * @abstract When enabled, ensures that the cell is completely displayed before allowed onscreen.
@@ -100,7 +100,7 @@ typedef NS_ENUM(NSUInteger, ASCellNodeVisibilityEvent) {
  * A Boolean value that is synchronized with the underlying collection or tableView cell property.
  * Setting this value is equivalent to calling highlightItem / unHighlightItem on the collection or table.
  */
-@property (getter=isHighlighted) BOOL highlighted;
+@property (getter=isHighlighted) NS_SWIFT_UI_ACTOR BOOL highlighted;
 
 /**
  * The current index path of this cell node, or @c nil if this node is
@@ -128,7 +128,7 @@ typedef NS_ENUM(NSUInteger, ASCellNodeVisibilityEvent) {
  * The backing view controller, or @c nil if the node wasn't initialized with backing view controller
  * @note This property must be accessed on the main thread.
  */
-@property (nullable, nonatomic, readonly) UIViewController *viewController;
+@property (nullable, nonatomic, readonly) UIViewController *viewController NS_SWIFT_UI_ACTOR;
 
 
 /**

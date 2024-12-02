@@ -79,7 +79,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  * @return The context object, or @c nil if no context was provided.
  */
-- (nullable id<ASSectionContext>)contextForSection:(NSInteger)section AS_WARN_UNUSED_RESULT;
+- (nullable id<ASSectionContext>)contextForSection:(NSInteger)section AS_WARN_UNUSED_RESULT NS_SWIFT_UI_ACTOR;
 
 @end
 
@@ -248,7 +248,7 @@ NS_ASSUME_NONNULL_BEGIN
  *                    Boolean parameter that contains the value YES if all of the related animations completed successfully or
  *                    NO if they were interrupted. This parameter may be nil. If supplied, the block is run on the main thread.
  */
-- (void)performBatchAnimated:(BOOL)animated updates:(nullable AS_NOESCAPE void (^)(void))updates completion:(nullable void (^)(BOOL finished))completion ASDISPLAYNODE_DEPRECATED_MSG("Use ASCollectionNode method instead.");
+- (void)performBatchAnimated:(BOOL)animated updates:(nullable AS_NOESCAPE void (^)(void))updates completion:(nullable NS_SWIFT_UI_ACTOR void (^)(BOOL finished))completion ASDISPLAYNODE_DEPRECATED_MSG("Use ASCollectionNode method instead.") NS_SWIFT_UI_ACTOR;
 
 /**
  *  Perform a batch of updates asynchronously.  This method must be called from the main thread.
@@ -259,7 +259,7 @@ NS_ASSUME_NONNULL_BEGIN
  *                    Boolean parameter that contains the value YES if all of the related animations completed successfully or
  *                    NO if they were interrupted. This parameter may be nil. If supplied, the block is run on the main thread.
  */
-- (void)performBatchUpdates:(nullable AS_NOESCAPE void (^)(void))updates completion:(nullable void (^)(BOOL finished))completion ASDISPLAYNODE_DEPRECATED_MSG("Use ASCollectionNode method instead.");
+- (void)performBatchUpdates:(nullable AS_NOESCAPE void (^)(void))updates completion:(nullable NS_SWIFT_UI_ACTOR void (^)(BOOL finished))completion ASDISPLAYNODE_DEPRECATED_MSG("Use ASCollectionNode method instead.");
 
 /**
  * Reload everything from scratch, destroying the working range and all cached nodes.
@@ -268,7 +268,7 @@ NS_ASSUME_NONNULL_BEGIN
  * the main thread.
  * @warning This method is substantially more expensive than UICollectionView's version.
  */
-- (void)reloadDataWithCompletion:(nullable void (^)(void))completion AS_UNAVAILABLE("Use ASCollectionNode method instead.");
+- (void)reloadDataWithCompletion:(nullable NS_SWIFT_UI_ACTOR void (^)(void))completion AS_UNAVAILABLE("Use ASCollectionNode method instead.");
 
 /**
  * Reload everything from scratch, destroying the working range and all cached nodes.
@@ -317,7 +317,7 @@ NS_ASSUME_NONNULL_BEGIN
  * @discussion This method must be called from the main thread. The asyncDataSource must be updated to reflect the changes
  * before this method is called.
  */
-- (void)insertSections:(NSIndexSet *)sections ASDISPLAYNODE_DEPRECATED_MSG("Use ASCollectionNode method instead.");
+- (void)insertSections:(NSIndexSet *)sections ASDISPLAYNODE_DEPRECATED_MSG("Use ASCollectionNode method instead.") NS_SWIFT_UI_ACTOR;
 
 /**
  * Deletes one or more sections.
@@ -327,7 +327,7 @@ NS_ASSUME_NONNULL_BEGIN
  * @discussion This method must be called from the main thread. The asyncDataSource must be updated to reflect the changes
  * before this method is called.
  */
-- (void)deleteSections:(NSIndexSet *)sections ASDISPLAYNODE_DEPRECATED_MSG("Use ASCollectionNode method instead.");
+- (void)deleteSections:(NSIndexSet *)sections ASDISPLAYNODE_DEPRECATED_MSG("Use ASCollectionNode method instead.") NS_SWIFT_UI_ACTOR;
 
 /**
  * Reloads the specified sections.
@@ -337,7 +337,7 @@ NS_ASSUME_NONNULL_BEGIN
  * @discussion This method must be called from the main thread. The asyncDataSource must be updated to reflect the changes
  * before this method is called.
  */
-- (void)reloadSections:(NSIndexSet *)sections ASDISPLAYNODE_DEPRECATED_MSG("Use ASCollectionNode method instead.");
+- (void)reloadSections:(NSIndexSet *)sections ASDISPLAYNODE_DEPRECATED_MSG("Use ASCollectionNode method instead.") NS_SWIFT_UI_ACTOR;
 
 /**
  * Moves a section to a new location.
@@ -349,7 +349,7 @@ NS_ASSUME_NONNULL_BEGIN
  * @discussion This method must be called from the main thread. The asyncDataSource must be updated to reflect the changes
  * before this method is called.
  */
-- (void)moveSection:(NSInteger)section toSection:(NSInteger)newSection ASDISPLAYNODE_DEPRECATED_MSG("Use ASCollectionNode method instead.");
+- (void)moveSection:(NSInteger)section toSection:(NSInteger)newSection ASDISPLAYNODE_DEPRECATED_MSG("Use ASCollectionNode method instead.") NS_SWIFT_UI_ACTOR;
 
 /**
  * Inserts items at the locations identified by an array of index paths.
@@ -359,7 +359,7 @@ NS_ASSUME_NONNULL_BEGIN
  * @discussion This method must be called from the main thread. The asyncDataSource must be updated to reflect the changes
  * before this method is called.
  */
-- (void)insertItemsAtIndexPaths:(NSArray<NSIndexPath *> *)indexPaths ASDISPLAYNODE_DEPRECATED_MSG("Use ASCollectionNode method instead.");
+- (void)insertItemsAtIndexPaths:(NSArray<NSIndexPath *> *)indexPaths ASDISPLAYNODE_DEPRECATED_MSG("Use ASCollectionNode method instead.") NS_SWIFT_UI_ACTOR;
 
 /**
  * Deletes the items specified by an array of index paths.
@@ -369,7 +369,7 @@ NS_ASSUME_NONNULL_BEGIN
  * @discussion This method must be called from the main thread. The asyncDataSource must be updated to reflect the changes
  * before this method is called.
  */
-- (void)deleteItemsAtIndexPaths:(NSArray<NSIndexPath *> *)indexPaths ASDISPLAYNODE_DEPRECATED_MSG("Use ASCollectionNode method instead.");
+- (void)deleteItemsAtIndexPaths:(NSArray<NSIndexPath *> *)indexPaths ASDISPLAYNODE_DEPRECATED_MSG("Use ASCollectionNode method instead.") NS_SWIFT_UI_ACTOR;
 
 /**
  * Reloads the specified items.
@@ -379,7 +379,7 @@ NS_ASSUME_NONNULL_BEGIN
  * @discussion This method must be called from the main thread. The asyncDataSource must be updated to reflect the changes
  * before this method is called.
  */
-- (void)reloadItemsAtIndexPaths:(NSArray<NSIndexPath *> *)indexPaths ASDISPLAYNODE_DEPRECATED_MSG("Use ASCollectionNode method instead.");
+- (void)reloadItemsAtIndexPaths:(NSArray<NSIndexPath *> *)indexPaths ASDISPLAYNODE_DEPRECATED_MSG("Use ASCollectionNode method instead.") NS_SWIFT_UI_ACTOR;
 
 /**
  * Moves the item at a specified location to a destination location.
@@ -391,7 +391,7 @@ NS_ASSUME_NONNULL_BEGIN
  * @discussion This method must be called from the main thread. The asyncDataSource must be updated to reflect the changes
  * before this method is called.
  */
-- (void)moveItemAtIndexPath:(NSIndexPath *)indexPath toIndexPath:(NSIndexPath *)newIndexPath ASDISPLAYNODE_DEPRECATED_MSG("Use ASCollectionNode method instead.");
+- (void)moveItemAtIndexPath:(NSIndexPath *)indexPath toIndexPath:(NSIndexPath *)newIndexPath ASDISPLAYNODE_DEPRECATED_MSG("Use ASCollectionNode method instead.") NS_SWIFT_UI_ACTOR;
 
 /**
  * Query the sized node at @c indexPath for its calculatedSize.

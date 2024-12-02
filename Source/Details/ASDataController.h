@@ -128,7 +128,7 @@ ASDK_EXTERN NSString * const ASCollectionInvalidUpdateException;
  *
  * @discussion This method will be called on main thread.
  */
-- (ASCollectionLayoutContext *)layoutContextWithElements:(ASElementMap *)elements;
+- (ASCollectionLayoutContext *)layoutContextWithElements:(ASElementMap *)elements NS_SWIFT_UI_ACTOR;
 
 /**
  * @abstract Prepares and returns a new layout for given context.
@@ -174,14 +174,14 @@ ASDK_EXTERN NSString * const ASCollectionInvalidUpdateException;
  *
  * This property will only be changed on the main thread.
  */
-@property (copy, readonly) ASElementMap *visibleMap;
+@property (copy, readonly) ASElementMap *visibleMap NS_SWIFT_UI_ACTOR;
 
 /**
  * The latest map fetched from the data source. May be more recent than @c visibleMap.
  *
  * This property will only be changed on the main thread.
  */
-@property (copy, readonly) ASElementMap *pendingMap;
+@property (copy, readonly) ASElementMap *pendingMap NS_SWIFT_UI_ACTOR;
 
 /**
  Data source for fetching data info.
@@ -201,7 +201,7 @@ ASDK_EXTERN NSString * const ASCollectionInvalidUpdateException;
 /**
  * Delegate for preparing layouts. Main thead only.
  */
-@property (nonatomic, weak) id<ASDataControllerLayoutDelegate> layoutDelegate;
+@property (nonatomic, weak) id<ASDataControllerLayoutDelegate> NS_SWIFT_UI_ACTOR layoutDelegate;
 
 #ifdef __cplusplus
 /**
@@ -210,7 +210,7 @@ ASDK_EXTERN NSString * const ASCollectionInvalidUpdateException;
  *
  * This must be called on the main thread.
  */
-- (std::vector<NSInteger>)itemCountsFromDataSource;
+- (std::vector<NSInteger>)itemCountsFromDataSource NS_SWIFT_UI_ACTOR;
 #endif
 
 /**
@@ -220,7 +220,7 @@ ASDK_EXTERN NSString * const ASCollectionInvalidUpdateException;
  *
  * This must be called on the main thread.
  */
-@property (nonatomic, readonly) BOOL initialReloadDataHasBeenCalled;
+@property (nonatomic, readonly) BOOL NS_SWIFT_UI_ACTOR initialReloadDataHasBeenCalled;
 
 /** @name Data Updating */
 

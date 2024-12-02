@@ -185,7 +185,7 @@ __unused static NSString * _Nonnull NSStringFromASHierarchyStateChange(ASHierarc
  * In order to guarantee against deadlocks, this method should only be called on the main thread.
  * It may block on the private queue, [_ASDisplayLayer displayQueue]
  */
-- (void)recursivelyEnsureDisplaySynchronously:(BOOL)synchronously;
+- (void)recursivelyEnsureDisplaySynchronously:(BOOL)synchronously NS_SWIFT_UI_ACTOR;
 
 /**
  * @abstract Calls -didExitPreloadState on the receiver and its subnode hierarchy.

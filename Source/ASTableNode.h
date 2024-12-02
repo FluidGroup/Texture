@@ -161,7 +161,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  * This method must be called on the main thread.
  */
-- (void)scrollToRowAtIndexPath:(NSIndexPath *)indexPath atScrollPosition:(UITableViewScrollPosition)scrollPosition animated:(BOOL)animated;
+- (void)scrollToRowAtIndexPath:(NSIndexPath *)indexPath atScrollPosition:(UITableViewScrollPosition)scrollPosition animated:(BOOL)animated NS_SWIFT_UI_ACTOR;
 
 /**
  * Reload everything from scratch, destroying the working range and all cached nodes.
@@ -170,7 +170,7 @@ NS_ASSUME_NONNULL_BEGIN
  * the main thread.
  * @warning This method is substantially more expensive than UITableView's version.
  */
-- (void)reloadDataWithCompletion:(nullable void (^)(void))completion;
+- (void)reloadDataWithCompletion:(nullable NS_SWIFT_UI_ACTOR void (^)(void))completion;
 
 /**
  * Reload everything from scratch, destroying the working range and all cached nodes.

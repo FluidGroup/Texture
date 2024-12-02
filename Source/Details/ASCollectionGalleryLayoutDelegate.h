@@ -27,7 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  * @return The elements' size
  */
-- (CGSize)galleryLayoutDelegate:(ASCollectionGalleryLayoutDelegate *)delegate sizeForElements:(ASElementMap *)elements;
+- (CGSize)galleryLayoutDelegate:(ASCollectionGalleryLayoutDelegate *)delegate sizeForElements:(ASElementMap *)elements NS_SWIFT_UI_ACTOR;
 
 @optional
 
@@ -47,7 +47,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  * @return The interitem spacing
  */
-- (CGFloat)galleryLayoutDelegate:(ASCollectionGalleryLayoutDelegate *)delegate minimumLineSpacingForElements:(ASElementMap *)elements;
+- (CGFloat)galleryLayoutDelegate:(ASCollectionGalleryLayoutDelegate *)delegate minimumLineSpacingForElements:(ASElementMap *)elements NS_SWIFT_UI_ACTOR;
 
 /**
  * Returns the minumum spacing to use between items in the same row or column, depending on the scroll directions.
@@ -65,7 +65,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  * @return The interitem spacing
  */
-- (CGFloat)galleryLayoutDelegate:(ASCollectionGalleryLayoutDelegate *)delegate minimumInteritemSpacingForElements:(ASElementMap *)elements;
+- (CGFloat)galleryLayoutDelegate:(ASCollectionGalleryLayoutDelegate *)delegate minimumInteritemSpacingForElements:(ASElementMap *)elements NS_SWIFT_UI_ACTOR;
 
 /**
  * Returns the margins of each section.
@@ -78,7 +78,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  * @return The margins used to layout content in a section
  */
-- (UIEdgeInsets)galleryLayoutDelegate:(ASCollectionGalleryLayoutDelegate *)delegate sectionInsetForElements:(ASElementMap *)elements;
+- (UIEdgeInsets)galleryLayoutDelegate:(ASCollectionGalleryLayoutDelegate *)delegate sectionInsetForElements:(ASElementMap *)elements NS_SWIFT_UI_ACTOR;
 
 @end
 

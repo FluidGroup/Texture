@@ -34,7 +34,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * UIView creation block. Used to create the backing view of a new display node.
  */
-typedef UIView * _Nonnull(^ASDisplayNodeViewBlock)(void);
+typedef NS_SWIFT_UI_ACTOR UIView * _Nonnull(NS_SWIFT_UI_ACTOR ^ASDisplayNodeViewBlock) (void);
 
 /**
  * UIView creation block. Used to create the backing view of a new display node.
@@ -49,7 +49,7 @@ typedef CALayer * _Nonnull(^ASDisplayNodeLayerBlock)(void);
 /**
  * ASDisplayNode loaded callback block. This block is called BEFORE the -didLoad method and is always called on the main thread.
  */
-typedef void (^ASDisplayNodeDidLoadBlock)(__kindof ASDisplayNode * node);
+typedef void (NS_SWIFT_UI_ACTOR ^ASDisplayNodeDidLoadBlock)(__kindof ASDisplayNode * node);
 
 /**
  * ASDisplayNode will / did render node content in context.
@@ -124,7 +124,7 @@ ASDK_EXTERN NSInteger const ASDefaultDrawingPriority;
  * @return An ASDisplayNode instance that loads its view with the given block that is guaranteed to run on the main
  * queue. The view will render synchronously and -layout and touch handling methods on the node will not be called.
  */
-- (instancetype)initWithViewBlock:(ASDisplayNodeViewBlock)viewBlock;
+- (instancetype)initWithViewBlock:(NS_SWIFT_UI_ACTOR ASDisplayNodeViewBlock)viewBlock;
 
 /**
  * @abstract Alternative initializer with a block to create the backing view.
@@ -135,7 +135,7 @@ ASDK_EXTERN NSInteger const ASDefaultDrawingPriority;
  * @return An ASDisplayNode instance that loads its view with the given block that is guaranteed to run on the main
  * queue. The view will render synchronously and -layout and touch handling methods on the node will not be called.
  */
-- (instancetype)initWithViewBlock:(ASDisplayNodeViewBlock)viewBlock didLoadBlock:(nullable ASDisplayNodeDidLoadBlock)didLoadBlock;
+- (instancetype)initWithViewBlock:(NS_SWIFT_UI_ACTOR ASDisplayNodeViewBlock)viewBlock didLoadBlock:(nullable NS_SWIFT_UI_ACTOR ASDisplayNodeDidLoadBlock)didLoadBlock;
 
 /**
  * @abstract Alternative initializer with a block to create the backing layer.
@@ -145,7 +145,7 @@ ASDK_EXTERN NSInteger const ASDefaultDrawingPriority;
  * @return An ASDisplayNode instance that loads its layer with the given block that is guaranteed to run on the main
  * queue. The layer will render synchronously and -layout and touch handling methods on the node will not be called.
  */
-- (instancetype)initWithLayerBlock:(ASDisplayNodeLayerBlock)layerBlock;
+- (instancetype)initWithLayerBlock:(NS_SWIFT_UI_ACTOR ASDisplayNodeLayerBlock)layerBlock;
 
 /**
  * @abstract Alternative initializer with a block to create the backing layer.
@@ -156,7 +156,7 @@ ASDK_EXTERN NSInteger const ASDefaultDrawingPriority;
  * @return An ASDisplayNode instance that loads its layer with the given block that is guaranteed to run on the main
  * queue. The layer will render synchronously and -layout and touch handling methods on the node will not be called.
  */
-- (instancetype)initWithLayerBlock:(ASDisplayNodeLayerBlock)layerBlock didLoadBlock:(nullable ASDisplayNodeDidLoadBlock)didLoadBlock;
+- (instancetype)initWithLayerBlock:(NS_SWIFT_UI_ACTOR ASDisplayNodeLayerBlock)layerBlock didLoadBlock:(nullable NS_SWIFT_UI_ACTOR ASDisplayNodeDidLoadBlock)didLoadBlock;
 
 /**
  * @abstract Add a block of work to be performed on the main thread when the node's view or layer is loaded. Thread safe.
@@ -167,7 +167,7 @@ ASDK_EXTERN NSInteger const ASDefaultDrawingPriority;
  *
  * @precondition The node is not already loaded.
  */
-- (void)onDidLoad:(ASDisplayNodeDidLoadBlock)body;
+- (void)onDidLoad:(NS_SWIFT_UI_ACTOR ASDisplayNodeDidLoadBlock)body;
 
 /**
  * Set the block that should be used to load this node's view.
@@ -178,7 +178,7 @@ ASDK_EXTERN NSInteger const ASDefaultDrawingPriority;
  *
  * @note You will usually NOT call this. See the limitations documented in @c initWithViewBlock:
  */
-- (void)setViewBlock:(ASDisplayNodeViewBlock)viewBlock;
+- (void)setViewBlock:(NS_SWIFT_UI_ACTOR ASDisplayNodeViewBlock)viewBlock;
 
 /**
  * Set the block that should be used to load this node's layer.
@@ -209,7 +209,7 @@ ASDK_EXTERN NSInteger const ASDefaultDrawingPriority;
  * @warning The first access to it must be on the main thread, and should only be used on the main thread thereafter as 
  * well.
  */
-@property (readonly) UIView *view;
+@property (readonly) NS_SWIFT_UI_ACTOR UIView *view;
 
 /** 
  * @abstract Returns whether a node's backing view or layer is loaded.
@@ -234,7 +234,7 @@ ASDK_EXTERN NSInteger const ASDefaultDrawingPriority;
  * @warning The first access to it must be on the main thread, and should only be used on the main thread thereafter as 
  * well.
  */
-@property (readonly) CALayer * layer;
+@property (readonly) NS_SWIFT_UI_ACTOR CALayer * layer;
 
 /**
  * Returns YES if the node is – at least partially – visible in a window.
@@ -275,7 +275,7 @@ ASDK_EXTERN NSInteger const ASDefaultDrawingPriority;
  *
  * @see ASInterfaceState
  */
-- (void)addInterfaceStateDelegate:(id <ASInterfaceStateDelegate>)interfaceStateDelegate;
+- (NS_SWIFT_UI_ACTOR void)addInterfaceStateDelegate:(id <ASInterfaceStateDelegate>)interfaceStateDelegate;
 
 /**
  * @abstract Removes a delegate from receiving notifications on interfaceState changes.
@@ -284,7 +284,7 @@ ASDK_EXTERN NSInteger const ASDefaultDrawingPriority;
  *
  * @see ASInterfaceState
  */
-- (void)removeInterfaceStateDelegate:(id <ASInterfaceStateDelegate>)interfaceStateDelegate;
+- (NS_SWIFT_UI_ACTOR void)removeInterfaceStateDelegate:(id <ASInterfaceStateDelegate>)interfaceStateDelegate;
 
 /**
  * @abstract Class property that allows to set a block that can be called on non-fatal errors. This
@@ -764,7 +764,7 @@ ASDK_EXTERN NSInteger const ASDefaultDrawingPriority;
  */
 @property (readonly)         UIEdgeInsets safeAreaInsets;
 @property           BOOL insetsLayoutMarginsFromSafeArea;  // Default: YES
-- (void)safeAreaInsetsDidChange;
+- (void)safeAreaInsetsDidChange NS_SWIFT_UI_ACTOR;
 
 
 // UIResponder methods
@@ -920,7 +920,7 @@ typedef NS_ENUM(NSInteger, ASLayoutEngineType) {
 - (void)transitionLayoutWithSizeRange:(ASSizeRange)constrainedSize
                              animated:(BOOL)animated
                    shouldMeasureAsync:(BOOL)shouldMeasureAsync
-                measurementCompletion:(nullable void(^)(void))completion;
+                measurementCompletion:(nullable NS_SWIFT_UI_ACTOR void(^)(void))completion NS_SWIFT_UI_ACTOR;
 
 
 /**
@@ -937,7 +937,7 @@ typedef NS_ENUM(NSInteger, ASLayoutEngineType) {
  */
 - (void)transitionLayoutWithAnimation:(BOOL)animated
                    shouldMeasureAsync:(BOOL)shouldMeasureAsync
-                measurementCompletion:(nullable void(^)(void))completion;
+                measurementCompletion:(nullable void(^)(void))completion NS_SWIFT_UI_ACTOR;
 
 /**
  * @abstract Cancels all performing layout transitions. Can be called on any thread.

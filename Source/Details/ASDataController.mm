@@ -30,6 +30,9 @@
 #import "ASDisplayNode+Subclasses.h"
 #import "NSIndexSet+ASHelpers.h"
 
+#import "ASCollectionView.h"
+#import "ASAssert.h"
+
 //#define LOG(...) NSLog(__VA_ARGS__)
 #define LOG(...)
 
@@ -197,8 +200,26 @@ typedef void (^ASDataControllerSynchronizationBlock)();
   if (![_dataSource dataController:self shouldEagerlyLayoutNode:node]) {
     return;
   }
-  
-  ASDisplayNodeAssert(ASSizeRangeHasSignificantArea(constrainedSize), @"Attempt to layout cell node with invalid size range %@", NSStringFromASSizeRange(constrainedSize));
+
+  if (ASSizeRangeHasSignificantArea(constrainedSize) == NO) {
+
+    ASPushMainThreadAssertionsDisabled();
+    NSString *message = @"";
+    message = [message stringByAppendingString: @"Attempt to layout cell node with invalid size range."];
+    message = [message stringByAppendingFormat: @"range: %@", NSStringFromASSizeRange(constrainedSize)];
+    message = [message stringByAppendingFormat: @"layoutDelegate: %@", self.layoutDelegate];
+    message = [message stringByAppendingFormat: @"node: %@", self.node];
+    message = [message stringByAppendingFormat: @"delegate: %@", self.delegate];
+    message = [message stringByAppendingFormat: @"dataSource: %@", self.dataSource];
+
+    if ([self.layoutDelegate isKindOfClass:[ASCollectionView class]]) {
+      ASCollectionView *collectionView = (ASCollectionView *) self.layoutDelegate;
+      message = [message stringByAppendingFormat: @"ASCollectionNode: %@", collectionView.collectionNode];
+    }
+
+    ASPopMainThreadAssertionsDisabled();
+    ASDisplayNodeFailAssert(message);
+  }
 
   CGRect frame = CGRectZero;
   frame.size = [node layoutThatFits:constrainedSize].size;

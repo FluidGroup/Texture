@@ -62,7 +62,7 @@ ASDK_EXTERN NSInteger const ASDefaultTransactionPriority;
  
  @desc This must be called on the main thread.
  */
-- (void)waitUntilComplete;
+- (void)waitUntilComplete NS_SWIFT_UI_ACTOR;
 
 /**
  A block that is called when the transaction is completed.

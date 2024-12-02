@@ -25,7 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  * @discusstion This method will be called on main thread.
  */
-- (ASScrollDirection)scrollableDirections;
+- (ASScrollDirection)scrollableDirections NS_SWIFT_UI_ACTOR;
 
 /**
  * @abstract Returns any additional information needed for a coming layout pass (@see @c -calculateLayoutWithContext:) with the given elements.
@@ -37,7 +37,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  * This method will be called on main thread.
  */
-- (nullable id)additionalInfoForLayoutWithElements:(ASElementMap *)elements;
+- (nullable id)additionalInfoForLayoutWithElements:(ASElementMap *)elements NS_SWIFT_UI_ACTOR;
 
 /**
  * @abstract Prepares and returns a new layout for given context.
