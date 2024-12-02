@@ -32,7 +32,7 @@ NS_ASSUME_NONNULL_BEGIN
  *   and it must be called on the main thread. -[UIViewController init]
  *   is a good place to call it. This method does not retain the collection node.
  */
-- (void)setASDKCollectionNode:(ASCollectionNode *)collectionNode;
+- (void)setASDKCollectionNode:(ASCollectionNode *)collectionNode NS_SWIFT_UI_ACTOR;
 
 @end
 

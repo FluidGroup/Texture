@@ -128,7 +128,7 @@ NS_SWIFT_SENDABLE @interface ASCellNode : ASDisplayNode
  * The backing view controller, or @c nil if the node wasn't initialized with backing view controller
  * @note This property must be accessed on the main thread.
  */
-@property (nullable, nonatomic, readonly) UIViewController *viewController;
+@property (nullable, nonatomic, readonly) UIViewController *viewController NS_SWIFT_UI_ACTOR;
 
 
 /**

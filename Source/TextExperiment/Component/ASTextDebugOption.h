@@ -85,7 +85,7 @@ NS_ASSUME_NONNULL_BEGIN
  
  @param option  A new debug option (nil is valid).
  */
-+ (void)setSharedDebugOption:(nullable ASTextDebugOption *)option;
++ (void)setSharedDebugOption:(nullable ASTextDebugOption *)option NS_SWIFT_UI_ACTOR;
 
 @end
 

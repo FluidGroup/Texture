@@ -138,7 +138,7 @@ NS_ASSUME_NONNULL_BEGIN
  * the main thread.
  * @warning This method is substantially more expensive than UITableView's version.
  */
--(void)reloadDataWithCompletion:(void (^ _Nullable)(void))completion;
+-(void)reloadDataWithCompletion:(void NS_SWIFT_UI_ACTOR (^ _Nullable)(void))completion;
 
 /**
  * Reload everything from scratch, destroying the working range and all cached nodes.
@@ -163,7 +163,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  *  @warning This method must be called from the main thread.
  */
-- (void)beginUpdates;
+- (void)beginUpdates NS_SWIFT_UI_ACTOR;
 
 /**
  *  Concludes a series of method calls that insert, delete, select, or reload rows and sections of the table view, with animation enabled and no completion block.
@@ -174,7 +174,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  *  @warning This method is must be called from the main thread.
  */
-- (void)endUpdates;
+- (void)endUpdates NS_SWIFT_UI_ACTOR;
 
 /**
  *  Concludes a series of method calls that insert, delete, select, or reload rows and sections of the table view.
@@ -189,12 +189,12 @@ NS_ASSUME_NONNULL_BEGIN
  *                    Boolean parameter that contains the value YES if all of the related animations completed successfully or
  *                    NO if they were interrupted. This parameter may be nil. If supplied, the block is run on the main thread.
  */
-- (void)endUpdatesAnimated:(BOOL)animated completion:(void (^ _Nullable)(BOOL completed))completion;
+- (void)endUpdatesAnimated:(BOOL)animated completion:(void NS_SWIFT_UI_ACTOR (^ _Nullable)(BOOL completed))completion NS_SWIFT_UI_ACTOR;
 
 /**
  *  Blocks execution of the main thread until all section and row updates are committed. This method must be called from the main thread.
  */
-- (void)waitUntilAllUpdatesAreCommitted;
+- (void)waitUntilAllUpdatesAreCommitted NS_SWIFT_UI_ACTOR;
 
 /**
  * Inserts one or more sections, with an option to animate the insertion.
@@ -206,7 +206,7 @@ NS_ASSUME_NONNULL_BEGIN
  * @discussion This method must be called from the main thread. The asyncDataSource must be updated to reflect the changes
  * before this method is called.
  */
-- (void)insertSections:(NSIndexSet *)sections withRowAnimation:(UITableViewRowAnimation)animation;
+- (void)insertSections:(NSIndexSet *)sections withRowAnimation:(UITableViewRowAnimation)animationNS_SWIFT_UI_ACTOR;
 
 /**
  * Deletes one or more sections, with an option to animate the deletion.
@@ -218,7 +218,7 @@ NS_ASSUME_NONNULL_BEGIN
  * @discussion This method must be called from the main thread. The asyncDataSource must be updated to reflect the changes
  * before this method is called.
  */
-- (void)deleteSections:(NSIndexSet *)sections withRowAnimation:(UITableViewRowAnimation)animation;
+- (void)deleteSections:(NSIndexSet *)sections withRowAnimation:(UITableViewRowAnimation)animation NS_SWIFT_UI_ACTOR;
 
 /**
  * Reloads the specified sections using a given animation effect.
@@ -230,7 +230,7 @@ NS_ASSUME_NONNULL_BEGIN
  * @discussion This method must be called from the main thread. The asyncDataSource must be updated to reflect the changes
  * before this method is called.
  */
-- (void)reloadSections:(NSIndexSet *)sections withRowAnimation:(UITableViewRowAnimation)animation;
+- (void)reloadSections:(NSIndexSet *)sections withRowAnimation:(UITableViewRowAnimation)animation NS_SWIFT_UI_ACTOR;
 
 /**
  * Moves a section to a new location.
@@ -242,7 +242,7 @@ NS_ASSUME_NONNULL_BEGIN
  * @discussion This method must be called from the main thread. The asyncDataSource must be updated to reflect the changes
  * before this method is called.
  */
-- (void)moveSection:(NSInteger)section toSection:(NSInteger)newSection;
+- (void)moveSection:(NSInteger)section toSection:(NSInteger)newSection NS_SWIFT_UI_ACTOR;
 
 /**
  * Inserts rows at the locations identified by an array of index paths, with an option to animate the insertion.
@@ -254,7 +254,7 @@ NS_ASSUME_NONNULL_BEGIN
  * @discussion This method must be called from the main thread. The asyncDataSource must be updated to reflect the changes
  * before this method is called.
  */
-- (void)insertRowsAtIndexPaths:(NSArray<NSIndexPath *> *)indexPaths withRowAnimation:(UITableViewRowAnimation)animation;
+- (void)insertRowsAtIndexPaths:(NSArray<NSIndexPath *> *)indexPaths withRowAnimation:(UITableViewRowAnimation)animation NS_SWIFT_UI_ACTOR;
 
 /**
  * Deletes the rows specified by an array of index paths, with an option to animate the deletion.
@@ -266,7 +266,7 @@ NS_ASSUME_NONNULL_BEGIN
  * @discussion This method must be called from the main thread. The asyncDataSource must be updated to reflect the changes
  * before this method is called.
  */
-- (void)deleteRowsAtIndexPaths:(NSArray<NSIndexPath *> *)indexPaths withRowAnimation:(UITableViewRowAnimation)animation;
+- (void)deleteRowsAtIndexPaths:(NSArray<NSIndexPath *> *)indexPaths withRowAnimation:(UITableViewRowAnimation)animation NS_SWIFT_UI_ACTOR;
 
 /**
  * Reloads the specified rows using a given animation effect.
@@ -278,7 +278,7 @@ NS_ASSUME_NONNULL_BEGIN
  * @discussion This method must be called from the main thread. The asyncDataSource must be updated to reflect the changes
  * before this method is called.
  */
-- (void)reloadRowsAtIndexPaths:(NSArray<NSIndexPath *> *)indexPaths withRowAnimation:(UITableViewRowAnimation)animation;
+- (void)reloadRowsAtIndexPaths:(NSArray<NSIndexPath *> *)indexPaths withRowAnimation:(UITableViewRowAnimation)animation NS_SWIFT_UI_ACTOR;
 
 /**
  * Moves the row at a specified location to a destination location.
@@ -290,7 +290,7 @@ NS_ASSUME_NONNULL_BEGIN
  * @discussion This method must be called from the main thread. The asyncDataSource must be updated to reflect the changes
  * before this method is called.
  */
-- (void)moveRowAtIndexPath:(NSIndexPath *)indexPath toIndexPath:(NSIndexPath *)newIndexPath;
+- (void)moveRowAtIndexPath:(NSIndexPath *)indexPath toIndexPath:(NSIndexPath *)newIndexPath NS_SWIFT_UI_ACTOR;
 
 - (void)setContentOffset:(CGPoint)contentOffset animated:(BOOL)animated;
 

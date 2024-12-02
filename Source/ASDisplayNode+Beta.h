@@ -19,7 +19,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-ASDK_EXTERN void ASPerformBlockOnMainThread(void (^block)(void));
+ASDK_EXTERN void ASPerformBlockOnMainThread(void NS_SWIFT_UI_ACTOR (^block)(void));
 ASDK_EXTERN void ASPerformBlockOnBackgroundThread(void (^block)(void)); // DISPATCH_QUEUE_PRIORITY_DEFAULT
 
 /**

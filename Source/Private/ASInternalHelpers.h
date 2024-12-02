@@ -29,7 +29,7 @@ ASDK_EXTERN BOOL ASSubclassOverridesClassSelector(Class superclass, Class subcla
 ASDK_EXTERN IMP ASReplaceMethodWithBlock(Class c, SEL origSEL, id block);
 
 /// Dispatches the given block to the main queue if not already running on the main thread
-ASDK_EXTERN void ASPerformBlockOnMainThread(void (^block)(void));
+ASDK_EXTERN void ASPerformBlockOnMainThread(void (NS_SWIFT_UI_ACTOR ^block)(void));
 
 /// Dispatches the given block to a background queue with priority of DISPATCH_QUEUE_PRIORITY_DEFAULT if not already run on a background queue
 ASDK_EXTERN void ASPerformBlockOnBackgroundThread(void (^block)(void)); // DISPATCH_QUEUE_PRIORITY_DEFAULT

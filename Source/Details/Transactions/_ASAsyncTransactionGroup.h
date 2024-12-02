@@ -20,7 +20,7 @@ AS_SUBCLASSING_RESTRICTED
 
 /// The main transaction group is scheduled to commit on every tick of the main runloop.
 /// Access from the main thread only.
-@property (class, nonatomic, readonly) _ASAsyncTransactionGroup *mainTransactionGroup;
+@property (class, nonatomic, readonly) _ASAsyncTransactionGroup *mainTransactionGroup NS_SWIFT_UI_ACTOR;
 
 - (void)commit;
 

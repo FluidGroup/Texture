@@ -311,7 +311,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  *  Calling -waitUntilAllUpdatesAreProcessed is one way to flush any pending update completion blocks.
  */
-- (void)onDidFinishProcessingUpdates:(void (^)(void))didFinishProcessingUpdates;
+- (void)onDidFinishProcessingUpdates:(void (NS_SWIFT_UI_ACTOR ^)(void))didFinishProcessingUpdates;
 
 /**
  *  Blocks execution of the main thread until all section and item updates are committed to the view. This method must be called from the main thread.
@@ -326,7 +326,7 @@ NS_ASSUME_NONNULL_BEGIN
  * @discussion This method must be called from the main thread. The data source must be updated to reflect the changes
  * before this method is called.
  */
-- (void)insertSections:(NSIndexSet *)sections;
+- (void)insertSections:(NSIndexSet *)sections NS_SWIFT_UI_ACTOR;
 
 /**
  * Deletes one or more sections.
@@ -346,7 +346,7 @@ NS_ASSUME_NONNULL_BEGIN
  * @discussion This method must be called from the main thread. The data source must be updated to reflect the changes
  * before this method is called.
  */
-- (void)reloadSections:(NSIndexSet *)sections;
+- (void)reloadSections:(NSIndexSet *)sections NS_SWIFT_UI_ACTOR;
 
 /**
  * Moves a section to a new location.
@@ -378,7 +378,7 @@ NS_ASSUME_NONNULL_BEGIN
  * @discussion This method must be called from the main thread. The data source must be updated to reflect the changes
  * before this method is called.
  */
-- (void)deleteItemsAtIndexPaths:(NSArray<NSIndexPath *> *)indexPaths;
+- (void)deleteItemsAtIndexPaths:(NSArray<NSIndexPath *> *)indexPaths NS_SWIFT_UI_ACTOR;
 
 /**
  * Reloads the specified items.
@@ -400,7 +400,7 @@ NS_ASSUME_NONNULL_BEGIN
  * @discussion This method must be called from the main thread. The data source must be updated to reflect the changes
  * before this method is called.
  */
-- (void)moveItemAtIndexPath:(NSIndexPath *)indexPath toIndexPath:(NSIndexPath *)newIndexPath;
+- (void)moveItemAtIndexPath:(NSIndexPath *)indexPath toIndexPath:(NSIndexPath *)newIndexPath NS_SWIFT_UI_ACTOR;
 
 /**
  * Reload everything from scratch, destroying the working range and all cached nodes.
@@ -446,7 +446,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  * @discussion This method must be called from the main thread.
  */
-- (void)selectItemAtIndexPath:(nullable NSIndexPath *)indexPath animated:(BOOL)animated scrollPosition:(UICollectionViewScrollPosition)scrollPosition;
+- (void)selectItemAtIndexPath:(nullable NSIndexPath *)indexPath animated:(BOOL)animated scrollPosition:(UICollectionViewScrollPosition)scrollPosition NS_SWIFT_UI_ACTOR;
 
 /**
  * Deselects the item at the specified index.
@@ -482,7 +482,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  * @return an array containing the nodes being displayed on screen. This must be called on the main thread.
  */
-@property (nonatomic, readonly) NSArray<__kindof ASCellNode *> *visibleNodes;
+@property (nonatomic, readonly) NSArray<__kindof ASCellNode *> *visibleNodes NS_SWIFT_UI_ACTOR;
 
 /**
  * Retrieves the node for the item at the given index path.
@@ -717,7 +717,7 @@ NS_ASSUME_NONNULL_BEGIN
  *   not implement reuse (it will be called once per row).  Unlike UICollectionView's version,
  *   this method is not called when the row is about to display.
  */
-- (ASCellNode *)collectionView:(ASCollectionView *)collectionView nodeForItemAtIndexPath:(NSIndexPath *)indexPath ASDISPLAYNODE_DEPRECATED_MSG("Use ASCollectionNode's method instead.");
+- (ASCellNode *)collectionView:(ASCollectionView *)collectionView nodeForItemAtIndexPath:(NSIndexPath *)indexPath ASDISPLAYNODE_DEPRECATED_MSG("Use ASCollectionNode's method instead.") NS_SWIFT_UI_ACTOR;
 
 /**
  * Similar to -collectionView:nodeForItemAtIndexPath:
@@ -750,7 +750,7 @@ NS_ASSUME_NONNULL_BEGIN
  * @param collectionView The sender.
  * @deprecated The data source is always accessed on the main thread, and this method will not be called.
  */
-- (void)collectionViewLockDataSource:(ASCollectionView *)collectionView ASDISPLAYNODE_DEPRECATED_MSG("Data source accesses are on the main thread. Method will not be called.");
+- (void)collectionViewLockDataSource:(ASCollectionView *)collectionView ASDISPLAYNODE_DEPRECATED_MSG("Data source accesses are on the main thread. Method will not be called.") NS_SWIFT_UI_ACTOR;
 
 /**
  * Indicator to unlock the data source for data fetching in async mode.
@@ -760,7 +760,7 @@ NS_ASSUME_NONNULL_BEGIN
  * @param collectionView The sender.
  * @deprecated The data source is always accessed on the main thread, and this method will not be called.
  */
-- (void)collectionViewUnlockDataSource:(ASCollectionView *)collectionView ASDISPLAYNODE_DEPRECATED_MSG("Data source accesses are on the main thread. Method will not be called.");
+- (void)collectionViewUnlockDataSource:(ASCollectionView *)collectionView ASDISPLAYNODE_DEPRECATED_MSG("Data source accesses are on the main thread. Method will not be called.") NS_SWIFT_UI_ACTOR;
 
 @end
 

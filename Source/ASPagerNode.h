@@ -93,7 +93,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * Returns the current page index. Main thread only.
  */
-@property (nonatomic, readonly) NSInteger currentPageIndex;
+@property (nonatomic, readonly) NSInteger currentPageIndex NS_SWIFT_UI_ACTOR;
 
 /**
  * Scroll the contents of the receiver to ensure that the page is visible

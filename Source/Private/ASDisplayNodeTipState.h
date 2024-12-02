@@ -25,7 +25,7 @@ AS_SUBCLASSING_RESTRICTED
 @property (nonatomic, unsafe_unretained, readonly) ASDisplayNode *node;
 
 /// Main-thread-only.
-@property (nonatomic, nullable) ASTipNode *tipNode;
+@property (nonatomic, nullable) NS_SWIFT_UI_ACTOR ASTipNode *tipNode;
 
 @end
 

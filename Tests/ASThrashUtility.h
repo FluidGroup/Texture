@@ -66,7 +66,7 @@ static atomic_uint ASThrashTestItemNextID;
 @property (nonatomic, readonly) CollectionView *collectionView;
 @property (nonatomic) NSArray <ASThrashTestSection *> *data;
 // Only access on main
-@property (nonatomic) ASWeakSet *allNodes;
+@property (nonatomic) NS_SWIFT_UI_ACTOR ASWeakSet *allNodes;
 
 - (instancetype)initTableViewDataSourceWithData:(NSArray <ASThrashTestSection *> *)data;
 - (instancetype)initCollectionViewDataSourceWithData:(NSArray <ASThrashTestSection *> * _Nullable)data;

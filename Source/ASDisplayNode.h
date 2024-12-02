@@ -145,7 +145,7 @@ ASDK_EXTERN NSInteger const ASDefaultDrawingPriority;
  * @return An ASDisplayNode instance that loads its layer with the given block that is guaranteed to run on the main
  * queue. The layer will render synchronously and -layout and touch handling methods on the node will not be called.
  */
-- (instancetype)initWithLayerBlock:(ASDisplayNodeLayerBlock)layerBlock;
+- (instancetype)initWithLayerBlock:(NS_SWIFT_UI_ACTOR ASDisplayNodeLayerBlock)layerBlock;
 
 /**
  * @abstract Alternative initializer with a block to create the backing layer.
@@ -156,7 +156,7 @@ ASDK_EXTERN NSInteger const ASDefaultDrawingPriority;
  * @return An ASDisplayNode instance that loads its layer with the given block that is guaranteed to run on the main
  * queue. The layer will render synchronously and -layout and touch handling methods on the node will not be called.
  */
-- (instancetype)initWithLayerBlock:(ASDisplayNodeLayerBlock)layerBlock didLoadBlock:(nullable ASDisplayNodeDidLoadBlock)didLoadBlock;
+- (instancetype)initWithLayerBlock:(NS_SWIFT_UI_ACTOR ASDisplayNodeLayerBlock)layerBlock didLoadBlock:(nullable NS_SWIFT_UI_ACTOR ASDisplayNodeDidLoadBlock)didLoadBlock;
 
 /**
  * @abstract Add a block of work to be performed on the main thread when the node's view or layer is loaded. Thread safe.
@@ -920,7 +920,7 @@ typedef NS_ENUM(NSInteger, ASLayoutEngineType) {
 - (void)transitionLayoutWithSizeRange:(ASSizeRange)constrainedSize
                              animated:(BOOL)animated
                    shouldMeasureAsync:(BOOL)shouldMeasureAsync
-                measurementCompletion:(nullable void(^)(void))completion NS_SWIFT_UI_ACTOR;
+                measurementCompletion:(nullable NS_SWIFT_UI_ACTOR void(^)(void))completion NS_SWIFT_UI_ACTOR;
 
 
 /**
@@ -937,7 +937,7 @@ typedef NS_ENUM(NSInteger, ASLayoutEngineType) {
  */
 - (void)transitionLayoutWithAnimation:(BOOL)animated
                    shouldMeasureAsync:(BOOL)shouldMeasureAsync
-                measurementCompletion:(nullable void(^)(void))completion;
+                measurementCompletion:(nullable void(^)(void))completion NS_SWIFT_UI_ACTOR;
 
 /**
  * @abstract Cancels all performing layout transitions. Can be called on any thread.

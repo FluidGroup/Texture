@@ -68,7 +68,7 @@ NS_ASSUME_NONNULL_BEGIN
 
  @desc Used by ASDisplayNode to display the layer synchronously on-demand (must be called on the main thread).
  */
-- (void)displayImmediately;
+- (void)displayImmediately NS_SWIFT_UI_ACTOR;
 
 @end
 
@@ -122,27 +122,27 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  @summary Delegate override for drawParameters
  */
-- (NSObject *)drawParametersForAsyncLayer:(_ASDisplayLayer *)layer;
+- (NSObject *)drawParametersForAsyncLayer:(_ASDisplayLayer *)layer NS_SWIFT_UI_ACTOR;
 
 /**
  @summary Delegate override for willDisplay
  */
-- (void)willDisplayAsyncLayer:(_ASDisplayLayer *)layer asynchronously:(BOOL)asynchronously;
+- (void)willDisplayAsyncLayer:(_ASDisplayLayer *)layer asynchronously:(BOOL)asynchronously NS_SWIFT_UI_ACTOR;
 
 /**
  @summary Delegate override for didDisplay
  */
-- (void)didDisplayAsyncLayer:(_ASDisplayLayer *)layer;
+- (void)didDisplayAsyncLayer:(_ASDisplayLayer *)layer NS_SWIFT_UI_ACTOR;
 
 /**
  @summary Delegate callback to display a layer, synchronously or asynchronously.  'asyncLayer' does not necessarily need to exist (can be nil).  Typically, a delegate will display/draw its own contents and then set .contents on the layer when finished.
  */
-- (void)displayAsyncLayer:(_ASDisplayLayer *)asyncLayer asynchronously:(BOOL)asynchronously;
+- (void)displayAsyncLayer:(_ASDisplayLayer *)asyncLayer asynchronously:(BOOL)asynchronously NS_SWIFT_UI_ACTOR;
 
 /**
  @summary Delegate callback to handle a layer which requests its asynchronous display be cancelled.
  */
-- (void)cancelDisplayAsyncLayer:(_ASDisplayLayer *)asyncLayer;
+- (void)cancelDisplayAsyncLayer:(_ASDisplayLayer *)asyncLayer NS_SWIFT_UI_ACTOR;
 
 @end
 

@@ -36,7 +36,7 @@ AS_SUBCLASSING_RESTRICTED
  
  You must call this method on the main thread.
  */
-- (void)flush;
+- (void)flush NS_SWIFT_UI_ACTOR;
 
 /**
  Register this node as having pending state that needs to be copied
