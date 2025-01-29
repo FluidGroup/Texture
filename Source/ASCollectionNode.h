@@ -231,7 +231,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  * This method must be called on the main thread.
  */
-- (void)scrollToItemAtIndexPath:(NSIndexPath *)indexPath atScrollPosition:(UICollectionViewScrollPosition)scrollPosition animated:(BOOL)animated;
+- (void)scrollToItemAtIndexPath:(NSIndexPath *)indexPath atScrollPosition:(UICollectionViewScrollPosition)scrollPosition animated:(BOOL)animated NS_SWIFT_UI_ACTOR;
 
 /**
  * Determines collection node's current scroll direction. Supports 2-axis collection nodes.
@@ -271,7 +271,7 @@ NS_ASSUME_NONNULL_BEGIN
  *                    Boolean parameter that contains the value YES if all of the related animations completed successfully or
  *                    NO if they were interrupted. This parameter may be nil. If supplied, the block is run on the main thread.
  */
-- (void)performBatchAnimated:(BOOL)animated updates:(nullable AS_NOESCAPE void (^)(void))updates completion:(nullable void (^)(BOOL finished))completion;
+- (void)performBatchAnimated:(BOOL)animated updates:(nullable AS_NOESCAPE void (^)(void))updates completion:(nullable NS_SWIFT_UI_ACTOR void (^)(BOOL finished))completion NS_SWIFT_UI_ACTOR;
 
 /**
  *  Perform a batch of updates asynchronously, optionally disabling all animations in the batch. This method must be called from the main thread.
@@ -282,7 +282,7 @@ NS_ASSUME_NONNULL_BEGIN
  *                    Boolean parameter that contains the value YES if all of the related animations completed successfully or
  *                    NO if they were interrupted. This parameter may be nil. If supplied, the block is run on the main thread.
  */
-- (void)performBatchUpdates:(nullable AS_NOESCAPE void (^)(void))updates completion:(nullable void (^)(BOOL finished))completion;
+- (void)performBatchUpdates:(nullable AS_NOESCAPE void (^)(void))updates completion:(nullable void (^)(BOOL finished))completion NS_SWIFT_UI_ACTOR;
 
 /**
  *  Returns YES if the ASCollectionNode is still processing changes from performBatchUpdates:.
@@ -311,7 +311,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  *  Calling -waitUntilAllUpdatesAreProcessed is one way to flush any pending update completion blocks.
  */
-- (void)onDidFinishProcessingUpdates:(void (^)(void))didFinishProcessingUpdates;
+- (void)onDidFinishProcessingUpdates:(NS_SWIFT_UI_ACTOR void (^)(void))didFinishProcessingUpdates;
 
 /**
  *  Blocks execution of the main thread until all section and item updates are committed to the view. This method must be called from the main thread.
@@ -326,7 +326,7 @@ NS_ASSUME_NONNULL_BEGIN
  * @discussion This method must be called from the main thread. The data source must be updated to reflect the changes
  * before this method is called.
  */
-- (void)insertSections:(NSIndexSet *)sections;
+- (void)insertSections:(NSIndexSet *)sections NS_SWIFT_UI_ACTOR;
 
 /**
  * Deletes one or more sections.
@@ -336,7 +336,7 @@ NS_ASSUME_NONNULL_BEGIN
  * @discussion This method must be called from the main thread. The data source must be updated to reflect the changes
  * before this method is called.
  */
-- (void)deleteSections:(NSIndexSet *)sections;
+- (void)deleteSections:(NSIndexSet *)sections NS_SWIFT_UI_ACTOR;
 
 /**
  * Reloads the specified sections.
@@ -346,7 +346,7 @@ NS_ASSUME_NONNULL_BEGIN
  * @discussion This method must be called from the main thread. The data source must be updated to reflect the changes
  * before this method is called.
  */
-- (void)reloadSections:(NSIndexSet *)sections;
+- (void)reloadSections:(NSIndexSet *)sections NS_SWIFT_UI_ACTOR;
 
 /**
  * Moves a section to a new location.
@@ -358,7 +358,7 @@ NS_ASSUME_NONNULL_BEGIN
  * @discussion This method must be called from the main thread. The data source must be updated to reflect the changes
  * before this method is called.
  */
-- (void)moveSection:(NSInteger)section toSection:(NSInteger)newSection;
+- (void)moveSection:(NSInteger)section toSection:(NSInteger)newSection NS_SWIFT_UI_ACTOR;
 
 /**
  * Inserts items at the locations identified by an array of index paths.
@@ -368,7 +368,7 @@ NS_ASSUME_NONNULL_BEGIN
  * @discussion This method must be called from the main thread. The data source must be updated to reflect the changes
  * before this method is called.
  */
-- (void)insertItemsAtIndexPaths:(NSArray<NSIndexPath *> *)indexPaths;
+- (void)insertItemsAtIndexPaths:(NSArray<NSIndexPath *> *)indexPaths NS_SWIFT_UI_ACTOR;
 
 /**
  * Deletes the items specified by an array of index paths.
@@ -378,7 +378,7 @@ NS_ASSUME_NONNULL_BEGIN
  * @discussion This method must be called from the main thread. The data source must be updated to reflect the changes
  * before this method is called.
  */
-- (void)deleteItemsAtIndexPaths:(NSArray<NSIndexPath *> *)indexPaths;
+- (void)deleteItemsAtIndexPaths:(NSArray<NSIndexPath *> *)indexPaths NS_SWIFT_UI_ACTOR;
 
 /**
  * Reloads the specified items.
@@ -388,7 +388,7 @@ NS_ASSUME_NONNULL_BEGIN
  * @discussion This method must be called from the main thread. The data source must be updated to reflect the changes
  * before this method is called.
  */
-- (void)reloadItemsAtIndexPaths:(NSArray<NSIndexPath *> *)indexPaths;
+- (void)reloadItemsAtIndexPaths:(NSArray<NSIndexPath *> *)indexPaths NS_SWIFT_UI_ACTOR;
 
 /**
  * Moves the item at a specified location to a destination location.
@@ -400,7 +400,7 @@ NS_ASSUME_NONNULL_BEGIN
  * @discussion This method must be called from the main thread. The data source must be updated to reflect the changes
  * before this method is called.
  */
-- (void)moveItemAtIndexPath:(NSIndexPath *)indexPath toIndexPath:(NSIndexPath *)newIndexPath;
+- (void)moveItemAtIndexPath:(NSIndexPath *)indexPath toIndexPath:(NSIndexPath *)newIndexPath NS_SWIFT_UI_ACTOR;
 
 /**
  * Reload everything from scratch, destroying the working range and all cached nodes.
@@ -409,7 +409,7 @@ NS_ASSUME_NONNULL_BEGIN
  * the main thread.
  * @warning This method is substantially more expensive than UICollectionView's version.
  */
-- (void)reloadDataWithCompletion:(nullable void (^)(void))completion;
+- (void)reloadDataWithCompletion:(nullable NS_SWIFT_UI_ACTOR void (^)(void))completion;
 
 
 /**
@@ -446,7 +446,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  * @discussion This method must be called from the main thread.
  */
-- (void)selectItemAtIndexPath:(nullable NSIndexPath *)indexPath animated:(BOOL)animated scrollPosition:(UICollectionViewScrollPosition)scrollPosition;
+- (void)selectItemAtIndexPath:(nullable NSIndexPath *)indexPath animated:(BOOL)animated scrollPosition:(UICollectionViewScrollPosition)scrollPosition NS_SWIFT_UI_ACTOR;
 
 /**
  * Deselects the item at the specified index.
@@ -459,7 +459,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  * @discussion This method must be called from the main thread.
  */
-- (void)deselectItemAtIndexPath:(NSIndexPath *)indexPath animated:(BOOL)animated;
+- (void)deselectItemAtIndexPath:(NSIndexPath *)indexPath animated:(BOOL)animated NS_SWIFT_UI_ACTOR;
 
 #pragma mark - Querying Data
 
@@ -482,7 +482,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  * @return an array containing the nodes being displayed on screen. This must be called on the main thread.
  */
-@property (nonatomic, readonly) NSArray<__kindof ASCellNode *> *visibleNodes;
+@property (nonatomic, readonly) NSArray<__kindof ASCellNode *> *visibleNodes NS_SWIFT_UI_ACTOR;
 
 /**
  * Retrieves the node for the item at the given index path.
@@ -518,7 +518,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  * @return an array containing the index paths of all visible items. This must be called on the main thread.
  */
-@property (nonatomic, readonly) NSArray<NSIndexPath *> *indexPathsForVisibleItems;
+@property (nonatomic, readonly) NSArray<NSIndexPath *> *indexPathsForVisibleItems NS_SWIFT_UI_ACTOR;
 
 /**
  * Retrieve the index path of the item at the given point.
@@ -527,7 +527,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  * @return The indexPath for the item at the given point. This must be called on the main thread.
  */
-- (nullable NSIndexPath *)indexPathForItemAtPoint:(CGPoint)point AS_WARN_UNUSED_RESULT;
+- (nullable NSIndexPath *)indexPathForItemAtPoint:(CGPoint)point AS_WARN_UNUSED_RESULT NS_SWIFT_UI_ACTOR;
 
 /**
  * Retrieve the cell at the given index path.
@@ -536,7 +536,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  * @return The cell for the given index path. This must be called on the main thread.
  */
-- (nullable UICollectionViewCell *)cellForItemAtIndexPath:(NSIndexPath *)indexPath;
+- (nullable UICollectionViewCell *)cellForItemAtIndexPath:(NSIndexPath *)indexPath NS_SWIFT_UI_ACTOR;
 
 /**
  * Retrieves the context object for the given section, as provided by the data source in
@@ -615,7 +615,7 @@ NS_ASSUME_NONNULL_BEGIN
  *   not implement reuse (it will be called once per item).  Unlike UICollectionView's version,
  *   this method is not called when the item is about to display.
  */
-- (ASCellNode *)collectionNode:(ASCollectionNode *)collectionNode nodeForItemAtIndexPath:(NSIndexPath *)indexPath;
+- (ASCellNode *)collectionNode:(ASCollectionNode *)collectionNode nodeForItemAtIndexPath:(NSIndexPath *)indexPath NS_SWIFT_UI_ACTOR;
 
 /**
  * Asks the data source to provide a node-block to display for the given supplementary element in the collection view.
