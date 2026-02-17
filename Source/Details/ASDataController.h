@@ -10,8 +10,8 @@
 #pragma once
 
 #import <UIKit/UIKit.h>
-#import <AsyncDisplayKit/ASBlockTypes.h>
-#import <AsyncDisplayKit/ASDimension.h>
+#import "ASBlockTypes.h"
+#import "ASDimension.h"
 #ifdef __cplusplus
 #import <vector>
 #endif
@@ -159,6 +159,8 @@ ASDK_EXTERN NSString * const ASCollectionInvalidUpdateException;
 - (instancetype)initWithDataSource:(id<ASDataControllerSource>)dataSource node:(nullable id<ASRangeManagingNode>)node NS_DESIGNATED_INITIALIZER;
 
 - (instancetype)init NS_UNAVAILABLE;
+
+@property (nonatomic) BOOL isMainThreadModeEnabled;
 
 /**
  * The node that owns this data controller, if any.

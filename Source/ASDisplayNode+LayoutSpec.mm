@@ -8,12 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-#import <AsyncDisplayKit/_ASScopeTimer.h>
-#import <AsyncDisplayKit/ASDisplayNodeInternal.h>
-#import <AsyncDisplayKit/ASDisplayNode+Subclasses.h>
-#import <AsyncDisplayKit/ASLayout.h>
-#import <AsyncDisplayKit/ASLayoutSpec+Subclasses.h>
-#import <AsyncDisplayKit/ASLayoutSpecPrivate.h>
+#import "_ASScopeTimer.h"
+#import "ASDisplayNodeInternal.h"
+#import "ASDisplayNode+Subclasses.h"
+#import "ASLayout.h"
+#import "ASLayoutSpec+Subclasses.h"
+#import "ASLayoutSpecPrivate.h"
 
 
 @implementation ASDisplayNode (ASLayoutSpec)
@@ -106,6 +106,27 @@
     _unflattenedLayout = layout;
   }
   layout = [layout filteredNodeLayoutTree];
+
+  // Flip layout if layout should be rendered right-to-left
+  BOOL shouldRenderRTLLayout = [UIView userInterfaceLayoutDirectionForSemanticContentAttribute:_semanticContentAttribute] == UIUserInterfaceLayoutDirectionRightToLeft;
+  if (shouldRenderRTLLayout) {
+      for (ASLayout *sublayout in layout.sublayouts) {
+          switch (_semanticContentAttribute) {
+              case UISemanticContentAttributeUnspecified:
+              case UISemanticContentAttributeForceRightToLeft: {
+                  // Flip
+                CGPoint flippedPosition = CGPointMake(layout.size.width - CGRectGetWidth(sublayout.frame) - sublayout.position.x, sublayout.position.y);
+                sublayout.position = flippedPosition;
+              }
+              case UISemanticContentAttributePlayback:
+              case UISemanticContentAttributeForceLeftToRight:
+              case UISemanticContentAttributeSpatial:
+                  // Don't flip
+                  break;
+          }
+      }
+  }
+
 
   return layout;
 }

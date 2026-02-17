@@ -7,34 +7,34 @@
 //  Licensed under Apache 2.0: http://www.apache.org/licenses/LICENSE-2.0
 //
 
-#import <AsyncDisplayKit/ASAssert.h>
-#import <AsyncDisplayKit/ASBatchFetching.h>
-#import <AsyncDisplayKit/ASDelegateProxy.h>
-#import <AsyncDisplayKit/ASCellNode+Internal.h>
-#import <AsyncDisplayKit/ASCollectionElement.h>
-#import <AsyncDisplayKit/ASCollectionInternal.h>
-#import <AsyncDisplayKit/ASCollectionLayout.h>
-#import <AsyncDisplayKit/ASCollectionNode+Beta.h>
-#import <AsyncDisplayKit/ASCollections.h>
-#import <AsyncDisplayKit/ASCollectionViewLayoutController.h>
-#import <AsyncDisplayKit/ASCollectionViewLayoutFacilitatorProtocol.h>
-#import <AsyncDisplayKit/ASCollectionViewFlowLayoutInspector.h>
-#import <AsyncDisplayKit/ASDisplayNodeExtras.h>
-#import <AsyncDisplayKit/ASDisplayNode+FrameworkPrivate.h>
-#import <AsyncDisplayKit/ASDisplayNode+Subclasses.h>
-#import <AsyncDisplayKit/ASElementMap.h>
-#import <AsyncDisplayKit/ASInternalHelpers.h>
-#import <AsyncDisplayKit/UICollectionViewLayout+ASConvenience.h>
-#import <AsyncDisplayKit/ASRangeController.h>
-#import <AsyncDisplayKit/_ASCollectionViewCell.h>
-#import <AsyncDisplayKit/_ASDisplayLayer.h>
-#import <AsyncDisplayKit/_ASCollectionReusableView.h>
-#import <AsyncDisplayKit/ASSectionContext.h>
-#import <AsyncDisplayKit/ASCollectionView+Undeprecated.h>
-#import <AsyncDisplayKit/_ASHierarchyChangeSet.h>
-#import <AsyncDisplayKit/CoreGraphics+ASConvenience.h>
-#import <AsyncDisplayKit/ASLayout.h>
-#import <AsyncDisplayKit/ASThread.h>
+#import "ASAssert.h"
+#import "ASBatchFetching.h"
+#import "ASDelegateProxy.h"
+#import "ASCellNode+Internal.h"
+#import "ASCollectionElement.h"
+#import "ASCollectionInternal.h"
+#import "ASCollectionLayout.h"
+#import "ASCollectionNode+Beta.h"
+#import "ASCollections.h"
+#import "ASCollectionViewLayoutController.h"
+#import "ASCollectionViewLayoutFacilitatorProtocol.h"
+#import "ASCollectionViewFlowLayoutInspector.h"
+#import "ASDisplayNodeExtras.h"
+#import "ASDisplayNode+FrameworkPrivate.h"
+#import "ASDisplayNode+Subclasses.h"
+#import "ASElementMap.h"
+#import "ASInternalHelpers.h"
+#import "UICollectionViewLayout+ASConvenience.h"
+#import "ASRangeController.h"
+#import "_ASCollectionViewCell.h"
+#import "_ASDisplayLayer.h"
+#import "_ASCollectionReusableView.h"
+#import "ASSectionContext.h"
+#import "ASCollectionView+Undeprecated.h"
+#import "_ASHierarchyChangeSet.h"
+#import "CoreGraphics+ASConvenience.h"
+#import "ASLayout.h"
+#import "ASThread.h"
 
 /**
  * A macro to get self.collectionNode and assign it to a local variable, or return
@@ -277,9 +277,7 @@ static NSString * const kReuseIdentifier = @"_ASCollectionReuseIdentifier";
   // Experiments done by Instagram show that this option being YES (default)
   // when unused causes a significant hit to scroll performance.
   // https://github.com/Instagram/IGListKit/issues/318
-  if (AS_AVAILABLE_IOS_TVOS(10, 10)) {
-    super.prefetchingEnabled = NO;
-  }
+  super.prefetchingEnabled = NO;
 
   _layoutController = [[ASCollectionViewLayoutController alloc] initWithCollectionView:self];
   
@@ -1655,7 +1653,10 @@ static NSString * const kReuseIdentifier = @"_ASCollectionReuseIdentifier";
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
   _deceleratingVelocity = CGPointZero;
-    
+  for (_ASCollectionViewCell *cell in _cellsForVisibilityUpdates) {
+    [cell cellNodeVisibilityEvent:ASCellNodeVisibilityEventDidStopScrolling inScrollView:scrollView];
+  }
+
   if (_asyncDelegateFlags.scrollViewDidEndDecelerating) {
     [_asyncDelegate scrollViewDidEndDecelerating:scrollView];
   }
@@ -1857,7 +1858,11 @@ static NSString * const kReuseIdentifier = @"_ASCollectionReuseIdentifier";
 
 - (void)_beginBatchFetchingIfNeededWithContentOffset:(CGPoint)contentOffset velocity:(CGPoint)velocity
 {
-  if (ASDisplayShouldFetchBatchForScrollView(self, self.scrollDirection, self.scrollableDirections, contentOffset, velocity)) {
+  // Since we are accessing self.collectionViewLayout, we should make sure we are on main
+  ASDisplayNodeAssertMainThread();
+  BOOL flipsHorizontallyInOppositeLayoutDirection = NO;
+  flipsHorizontallyInOppositeLayoutDirection = self.collectionViewLayout.flipsHorizontallyInOppositeLayoutDirection;
+  if (ASDisplayShouldFetchBatchForScrollView(self, self.scrollDirection, self.scrollableDirections, contentOffset, velocity, flipsHorizontallyInOppositeLayoutDirection)) {
     [self _beginBatchFetching];
   }
 }
@@ -2311,6 +2316,9 @@ static NSString * const kReuseIdentifier = @"_ASCollectionReuseIdentifier";
       
       // Flush any range changes that happened as part of submitting the update.
       as_activity_scope(changeSet.rootActivity);
+      if (numberOfUpdates > 0 && ASActivateExperimentalFeature(ASExperimentalRangeUpdateOnChangesetUpdate)) {
+        [self->_rangeController setNeedsUpdate];
+      }
       [self->_rangeController updateIfNeeded];
     }
   });

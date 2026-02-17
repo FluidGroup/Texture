@@ -8,10 +8,10 @@
 //
 
 
-#import <AsyncDisplayKit/_ASAsyncTransaction.h>
-#import <AsyncDisplayKit/_ASAsyncTransactionGroup.h>
-#import <AsyncDisplayKit/ASAssert.h>
-#import <AsyncDisplayKit/ASThread.h>
+#import "_ASAsyncTransaction.h"
+#import "_ASAsyncTransactionGroup.h"
+#import "ASAssert.h"
+#import "ASThread.h"
 #import <list>
 #import <map>
 
@@ -44,7 +44,7 @@ NSInteger const ASDefaultTransactionPriority = 0;
   NSAssert(_operationCompletionBlock == nil, @"Should have been called and released before -dealloc");
 }
 
-- (void)callAndReleaseCompletionBlock:(BOOL)canceled;
+- (void)callAndReleaseCompletionBlock:(BOOL)canceled
 {
   ASDisplayNodeAssertMainThread();
   if (_operationCompletionBlock) {

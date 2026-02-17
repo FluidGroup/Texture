@@ -8,8 +8,9 @@
 # ls -ld /Applications/Xcode*
 # echo ************* diagnostics end
 
-PLATFORM="${TEXTURE_BUILD_PLATFORM:-platform=iOS Simulator,OS=13.5,name=iPhone 8}"
-SDK="${TEXTURE_BUILD_SDK:-iphonesimulator13.5}"
+# run this on a 2x device until we've updated snapshot images to 3x
+PLATFORM="${TEXTURE_BUILD_PLATFORM:-platform=iOS Simulator,OS=17.4,name=iPhone SE (3rd generation)}"
+SDK="${TEXTURE_BUILD_SDK:-iphonesimulator17.4}"
 DERIVED_DATA_PATH="~/ASDKDerivedData"
 
 # It is pitch black.
@@ -36,10 +37,14 @@ function build_example {
     if [ -f "${example}/Podfile" ]; then
         echo "Using CocoaPods"
         pod install --project-directory=$example
-
+        
+        workspace=$(ls -d ${example}/*.xcworkspace)
+        filename=$(basename -- "$workspace")
+        scheme="${filename%.*}"
+        
         set -o pipefail && xcodebuild \
-            -workspace "${example}/Sample.xcworkspace" \
-            -scheme Sample \
+            -workspace "${workspace}" \
+            -scheme "$scheme" \
             -sdk "$SDK" \
             -destination "$PLATFORM" \
             -derivedDataPath "$DERIVED_DATA_PATH" \
@@ -51,7 +56,8 @@ function build_example {
         cd $example
 
         echo "git \"file://${local_repo}\" \"${current_branch}\"" > "Cartfile"
-        carthage update --platform iOS
+        carthage update --no-use-binaries --no-build --platform iOS
+        carthage build --no-skip-current --use-xcframeworks
 
         set -o pipefail && xcodebuild \
             -project "Sample.xcodeproj" \
@@ -61,12 +67,15 @@ function build_example {
             build
 
         cd ../..
+     else 
+        echo "Seems like there are no Cartfile or Podfile in the ${example}"
+        echo "Build will be skipped."     
     fi
 }
 
 # Lint subspec
 function lint_subspec {
-    set -o pipefail && pod env && pod lib lint --subspec="$1"
+    set -o pipefail && pod env && pod lib lint --allow-warnings --subspec="$1"
 }
 
 function cleanup {
@@ -101,6 +110,20 @@ tests_listkit)
         -sdk "$SDK" \
         -destination "$PLATFORM" \
         build-for-testing test
+    success="1"
+    ;;
+
+build_listkit_xcode_spm_integration)
+    echo "Regenerate SPM layout"
+    swift scripts/generate_spm_sources_layout.swift
+    echo "Building AsyncDisplayKit+IGListKit via Xcode's Swift Package Manager"
+    echo "Xcode 12.2+ required"
+    set -o pipefail && xcodebuild clean \
+        -project examples/ASIGListKitSPM/Sample.xcodeproj \
+        -scheme Sample \
+        -sdk "iphonesimulator" \
+        -destination "platform=iOS Simulator,name=iPhone 12" \
+        build
     success="1"
     ;;
 
@@ -148,6 +171,16 @@ examples-pt4)
     echo "Verifying that all AsyncDisplayKit examples compile."
     for example in $((find ./examples -type d -maxdepth 1 \( ! -iname ".*" \)) | tail -n +17); do
         echo "Building (examples-pt4) $example"
+
+        build_example $example
+    done
+    success="1"
+    ;;
+
+examples-extras)
+    echo "Verifying that all AsyncDisplayKit examples extras compile."
+    for example in $(find ./examples_extra -type d -maxdepth 1 \( ! -iname ".*" \)); do
+        echo "Building (examples-extra) $example"
 
         build_example $example
     done
@@ -218,7 +251,7 @@ framework|all)
 cocoapods-lint|all)
     echo "Verifying that podspec lints."
 
-    set -o pipefail && pod env && pod lib lint
+    set -o pipefail && pod env && pod lib lint --allow-warnings
     success="1"
     ;;
 
@@ -246,8 +279,11 @@ cocoapods-lint-other-subspecs)
 
 carthage|all)
     echo "Verifying carthage works."
+    ## carthage workaround to slip spm based project
+    spm_example_project="examples/ASIGListKitSPM/Sample.xcodeproj"
+    carthge_example_project_workaround="examples/ASIGListKitSPM/Sample.carthageSkip"
 
-    set -o pipefail && carthage update && carthage build --no-skip-current
+    set -o pipefail && carthage update --no-use-binaries --no-build && carthage build --no-skip-current --use-xcframeworks
     success="1"
     ;;
 

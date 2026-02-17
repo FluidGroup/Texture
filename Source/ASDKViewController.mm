@@ -7,12 +7,12 @@
 //  Licensed under Apache 2.0: http://www.apache.org/licenses/LICENSE-2.0
 //
 
-#import <AsyncDisplayKit/ASDKViewController.h>
-#import <AsyncDisplayKit/ASDisplayNode+FrameworkPrivate.h>
-#import <AsyncDisplayKit/ASLog.h>
-#import <AsyncDisplayKit/ASRangeControllerUpdateRangeProtocol+Beta.h>
-#import <AsyncDisplayKit/ASInternalHelpers.h>
-#import <AsyncDisplayKit/ASConfigurationInternal.h>
+#import "ASDKViewController.h"
+#import "ASDisplayNode+FrameworkPrivate.h"
+#import "ASLog.h"
+#import "ASRangeControllerUpdateRangeProtocol+Beta.h"
+#import "ASInternalHelpers.h"
+#import "ASConfigurationInternal.h"
 
 @implementation ASDKViewController
 {
@@ -165,10 +165,6 @@
     [_node recursivelyEnsureDisplaySynchronously:YES];
   }
   [super viewDidLayoutSubviews];
-
-  if (!AS_AT_LEAST_IOS11) {
-    [self _updateNodeFallbackSafeArea];
-  }
 }
 
 - (void)_updateNodeFallbackSafeArea
@@ -286,21 +282,12 @@ ASVisibilityDepthImplementation;
 
 - (UIEdgeInsets)additionalSafeAreaInsets
 {
-  if (AS_AVAILABLE_IOS_TVOS(11.0, 11.0)) {
-    return super.additionalSafeAreaInsets;
-  }
-
-  return _fallbackAdditionalSafeAreaInsets;
+  return super.additionalSafeAreaInsets;
 }
 
 - (void)setAdditionalSafeAreaInsets:(UIEdgeInsets)additionalSafeAreaInsets
 {
-  if (AS_AVAILABLE_IOS_TVOS(11.0, 11.0)) {
-    [super setAdditionalSafeAreaInsets:additionalSafeAreaInsets];
-  } else {
-    _fallbackAdditionalSafeAreaInsets = additionalSafeAreaInsets;
-    [self _updateNodeFallbackSafeArea];
-  }
+  [super setAdditionalSafeAreaInsets:additionalSafeAreaInsets];
 }
 
 #pragma mark - ASTraitEnvironment

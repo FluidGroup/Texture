@@ -9,12 +9,12 @@
 
 #import <UIKit/UIKit.h>
 
-#import <AsyncDisplayKit/ASCollectionViewProtocols.h>
-#import <AsyncDisplayKit/ASBaseDefines.h>
-#import <AsyncDisplayKit/ASBatchContext.h>
-#import <AsyncDisplayKit/ASDimension.h>
-#import <AsyncDisplayKit/ASLayoutRangeType.h>
-#import <AsyncDisplayKit/ASScrollDirection.h>
+#import "ASCollectionViewProtocols.h"
+#import "ASBaseDefines.h"
+#import "ASBatchContext.h"
+#import "ASDimension.h"
+#import "ASLayoutRangeType.h"
+#import "ASScrollDirection.h"
 
 @class ASCellNode;
 @class ASCollectionNode;
@@ -79,7 +79,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  * @return The context object, or @c nil if no context was provided.
  */
-- (nullable id<ASSectionContext>)contextForSection:(NSInteger)section AS_WARN_UNUSED_RESULT;
+- (nullable id<ASSectionContext>)contextForSection:(NSInteger)section AS_WARN_UNUSED_RESULT NS_SWIFT_UI_ACTOR;
 
 @end
 

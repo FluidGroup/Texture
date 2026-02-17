@@ -7,32 +7,45 @@
 //  Licensed under Apache 2.0: http://www.apache.org/licenses/LICENSE-2.0
 //
 
-#import <AsyncDisplayKit/ASAvailability.h>
+#import "ASAvailability.h"
 
 #if AS_PIN_REMOTE_IMAGE
-#import <AsyncDisplayKit/ASPINRemoteImageDownloader.h>
+#import "ASPINRemoteImageDownloader.h"
 
-#import <AsyncDisplayKit/ASAssert.h>
-#import <AsyncDisplayKit/ASThread.h>
-#import <AsyncDisplayKit/ASImageContainerProtocolCategories.h>
+#import "ASAssert.h"
+#import "ASThread.h"
+#import "ASImageContainerProtocolCategories.h"
 
-#if __has_include (<PINRemoteImage/PINGIFAnimatedImage.h>)
-#define PIN_ANIMATED_AVAILABLE 1
-#import <PINRemoteImage/PINCachedAnimatedImage.h>
-#import <PINRemoteImage/PINAlternateRepresentationProvider.h>
+#if __has_include(<PINRemoteImage/PINGIFAnimatedImage.h>) || __has_include("PINGIFAnimatedImage.h")
+    #define PIN_ANIMATED_AVAILABLE 1
+    #if __has_include(<PINRemoteImage/PINGIFAnimatedImage.h>)
+        #import <PINRemoteImage/PINCachedAnimatedImage.h>
+        #import <PINRemoteImage/PINAlternateRepresentationProvider.h>
+    #else
+        #import "PINCachedAnimatedImage.h"
+        #import "PINAlternateRepresentationProvider.h"
+    #endif
 #else
-#define PIN_ANIMATED_AVAILABLE 0
+    #define PIN_ANIMATED_AVAILABLE 0
 #endif
 
-#if __has_include(<webp/decode.h>)
-#define PIN_WEBP_AVAILABLE  1
+#if __has_include(<webp/decode.h>) || __has_include("webp/decode.h")
+    #define PIN_WEBP_AVAILABLE  1
 #else
-#define PIN_WEBP_AVAILABLE  0
+    #define PIN_WEBP_AVAILABLE  0
 #endif
 
-#import <PINRemoteImage/PINRemoteImageManager.h>
-#import <PINRemoteImage/NSData+ImageDetectors.h>
-#import <PINRemoteImage/PINRemoteImageCaching.h>
+#if __has_include(<PINRemoteImage/PINRemoteImage.h>)
+    #import <PINRemoteImage/PINRemoteImageManager.h>
+    #import <PINRemoteImage/NSData+ImageDetectors.h>
+    #import <PINRemoteImage/PINRemoteImageCaching.h>
+#else
+    #import "PINRemoteImageManager.h"
+    #import "NSData+ImageDetectors.h"
+    #import "PINRemoteImageCaching.h"
+#endif
+
+
 
 static inline PINRemoteImageManagerPriority PINRemoteImageManagerPriorityWithASImageDownloaderPriority(ASImageDownloaderPriority priority) {
   switch (priority) {
@@ -99,8 +112,8 @@ static inline PINRemoteImageManagerPriority PINRemoteImageManagerPriorityWithASI
       if ([diskCache respondsToSelector:@selector(setByteLimit:)]) {
         // Set a default byteLimit. PINCache recently implemented a 50MB default (PR #201).
         // Ensure that older versions of PINCache also have a byteLimit applied.
-        // NOTE: Using 20MB limit while large cache initialization is being optimized (Issue #144).
-        ((id <ASPINDiskCache>)diskCache).byteLimit = 20 * 1024 * 1024;
+        // NOTE: Matching PINCache defualt 50MB limit.
+        ((id <ASPINDiskCache>)diskCache).byteLimit = 50 * 1024 * 1024;
       }
     }
   });
@@ -212,7 +225,7 @@ static dispatch_once_t shared_init_predicate;
 }
 #endif
 
-- (id <ASImageContainerProtocol>)synchronouslyFetchedCachedImageWithURL:(NSURL *)URL;
+- (id <ASImageContainerProtocol>)synchronouslyFetchedCachedImageWithURL:(NSURL *)URL
 {
   PINRemoteImageManager *manager = [self sharedPINRemoteImageManager];
   PINRemoteImageManagerResult *result = [manager synchronousImageFromCacheWithURL:URL processorKey:nil options:PINRemoteImageManagerDownloadOptionsSkipDecode];
@@ -258,7 +271,7 @@ static dispatch_once_t shared_init_predicate;
                         shouldRetry:(BOOL)shouldRetry
                       callbackQueue:(dispatch_queue_t)callbackQueue
                    downloadProgress:(ASImageDownloaderProgress)downloadProgress
-                         completion:(ASImageDownloaderCompletion)completion;
+                         completion:(ASImageDownloaderCompletion)completion
 {
   return [self downloadImageWithURL:URL
                         shouldRetry:shouldRetry

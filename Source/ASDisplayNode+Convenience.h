@@ -7,7 +7,7 @@
 //  Licensed under Apache 2.0: http://www.apache.org/licenses/LICENSE-2.0
 //
 
-#import <AsyncDisplayKit/ASDisplayNode.h>
+#import "ASDisplayNode.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -21,7 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
  * @warning This property may only be accessed on the main thread. This property may
  *   be @c nil until the node's view is actually hosted in the view hierarchy.
  */
-@property (nonatomic, nullable, readonly) __kindof UIViewController *closestViewController;
+@property (nonatomic, nullable, readonly) __kindof UIViewController *closestViewController NS_SWIFT_UI_ACTOR;
 
 @end
 

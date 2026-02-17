@@ -7,11 +7,11 @@
 //  Licensed under Apache 2.0: http://www.apache.org/licenses/LICENSE-2.0
 //
 
-#import <AsyncDisplayKit/ASInsetLayoutSpec.h>
+#import "ASInsetLayoutSpec.h"
 
-#import <AsyncDisplayKit/ASLayoutSpec+Subclasses.h>
+#import "ASLayoutSpec+Subclasses.h"
 
-#import <AsyncDisplayKit/ASInternalHelpers.h>
+#import "ASInternalHelpers.h"
 
 @interface ASInsetLayoutSpec ()
 {
@@ -39,7 +39,7 @@ static CGFloat centerInset(CGFloat outer, CGFloat inner)
 
 @implementation ASInsetLayoutSpec
 
-- (instancetype)initWithInsets:(UIEdgeInsets)insets child:(id<ASLayoutElement>)child;
+- (instancetype)initWithInsets:(UIEdgeInsets)insets child:(id<ASLayoutElement>)child
 {
   if (!(self = [super init])) {
     return nil;

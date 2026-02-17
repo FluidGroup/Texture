@@ -7,18 +7,18 @@
 //  Licensed under Apache 2.0: http://www.apache.org/licenses/LICENSE-2.0
 //
 
-#import <AsyncDisplayKit/ASImageNode.h>
+#import "ASImageNode.h"
 
-#import <AsyncDisplayKit/ASDisplayNode+Subclasses.h>
-#import <AsyncDisplayKit/ASDisplayNodeExtras.h>
-#import <AsyncDisplayKit/ASDisplayNodeInternal.h>
-#import <AsyncDisplayKit/ASEqualityHelpers.h>
-#import <AsyncDisplayKit/ASImageNode+Private.h>
-#import <AsyncDisplayKit/ASImageNode+AnimatedImagePrivate.h>
-#import <AsyncDisplayKit/ASImageProtocols.h>
-#import <AsyncDisplayKit/ASInternalHelpers.h>
-#import <AsyncDisplayKit/ASNetworkImageNode.h>
-#import <AsyncDisplayKit/ASWeakProxy.h>
+#import "ASDisplayNode+Subclasses.h"
+#import "ASDisplayNodeExtras.h"
+#import "ASDisplayNodeInternal.h"
+#import "ASEqualityHelpers.h"
+#import "ASImageNode+Private.h"
+#import "ASImageNode+AnimatedImagePrivate.h"
+#import "ASImageProtocols.h"
+#import "ASInternalHelpers.h"
+#import "ASNetworkImageNode.h"
+#import "ASWeakProxy.h"
 
 #define ASAnimatedImageDebug  0
 
@@ -327,11 +327,9 @@
   CFTimeInterval timeBetweenLastFire;
   if (self.lastDisplayLinkFire == 0) {
     timeBetweenLastFire = 0;
-  } else if (AS_AVAILABLE_IOS_TVOS(10, 10)) {
-    timeBetweenLastFire = displayLink.targetTimestamp - displayLink.timestamp;
   } else {
-    timeBetweenLastFire = CACurrentMediaTime() - self.lastDisplayLinkFire;
-  }
+    timeBetweenLastFire = displayLink.targetTimestamp - displayLink.timestamp;
+  } 
   self.lastDisplayLinkFire = CACurrentMediaTime();
   
   _playHead += timeBetweenLastFire;

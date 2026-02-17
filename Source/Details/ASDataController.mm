@@ -7,28 +7,28 @@
 //  Licensed under Apache 2.0: http://www.apache.org/licenses/LICENSE-2.0
 //
 
-#import <AsyncDisplayKit/ASDataController.h>
+#import "ASDataController.h"
 
-#import <AsyncDisplayKit/_ASHierarchyChangeSet.h>
-#import <AsyncDisplayKit/_ASScopeTimer.h>
-#import <AsyncDisplayKit/ASCellNode.h>
-#import <AsyncDisplayKit/ASCollectionElement.h>
-#import <AsyncDisplayKit/ASCollectionLayoutContext.h>
-#import <AsyncDisplayKit/ASDispatch.h>
-#import <AsyncDisplayKit/ASDisplayNodeExtras.h>
-#import <AsyncDisplayKit/ASElementMap.h>
-#import <AsyncDisplayKit/ASLayout.h>
-#import <AsyncDisplayKit/ASSignpost.h>
-#import <AsyncDisplayKit/ASMainSerialQueue.h>
-#import <AsyncDisplayKit/ASMutableElementMap.h>
-#import <AsyncDisplayKit/ASRangeManagingNode.h>
-#import <AsyncDisplayKit/ASThread.h>
-#import <AsyncDisplayKit/ASSection.h>
+#import "_ASHierarchyChangeSet.h"
+#import "_ASScopeTimer.h"
+#import "ASCellNode.h"
+#import "ASCollectionElement.h"
+#import "ASCollectionLayoutContext.h"
+#import "ASDispatch.h"
+#import "ASDisplayNodeExtras.h"
+#import "ASElementMap.h"
+#import "ASLayout.h"
+#import "ASSignpost.h"
+#import "ASMainSerialQueue.h"
+#import "ASMutableElementMap.h"
+#import "ASRangeManagingNode.h"
+#import "ASThread.h"
+#import "ASSection.h"
 
-#import <AsyncDisplayKit/ASInternalHelpers.h>
-#import <AsyncDisplayKit/ASCellNode+Internal.h>
-#import <AsyncDisplayKit/ASDisplayNode+Subclasses.h>
-#import <AsyncDisplayKit/NSIndexSet+ASHelpers.h>
+#import "ASInternalHelpers.h"
+#import "ASCellNode+Internal.h"
+#import "ASDisplayNode+Subclasses.h"
+#import "NSIndexSet+ASHelpers.h"
 
 //#define LOG(...) NSLog(__VA_ARGS__)
 #define LOG(...)
@@ -662,7 +662,7 @@ typedef void (^ASDataControllerSynchronizationBlock)();
 
   // Step 3 can be done on the main thread or on _editingTransactionQueue
   // depending on an experiment.
-  BOOL mainThreadOnly = ASActivateExperimentalFeature(ASExperimentalMainThreadOnlyDataController);
+  BOOL mainThreadOnly = self.isMainThreadModeEnabled || ASActivateExperimentalFeature(ASExperimentalMainThreadOnlyDataController);
   if (mainThreadOnly) {
     // In main-thread-only mode allocate and layout all nodes serially on the main thread.
     //

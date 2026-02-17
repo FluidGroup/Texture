@@ -7,12 +7,13 @@
 //  Licensed under Apache 2.0: http://www.apache.org/licenses/LICENSE-2.0
 //
 
-#import <AsyncDisplayKit/_ASDisplayLayer.h>
+#import "_ASDisplayLayer.h"
 
-#import <AsyncDisplayKit/_ASAsyncTransactionContainer.h>
-#import <AsyncDisplayKit/ASAssert.h>
-#import <AsyncDisplayKit/ASDisplayNode.h>
-#import <AsyncDisplayKit/ASDisplayNodeInternal.h>
+#import "_ASAsyncTransactionContainer.h"
+#import "ASAssert.h"
+#import "ASDisplayNode.h"
+#import "ASDisplayNodeInternal.h"
+#import "ASInternalHelpers.h"
 
 @implementation _ASDisplayLayer
 {
@@ -36,6 +37,26 @@
       [self cancelAsyncDisplay];
     }
   }
+}
+
+- (void)setPosition:(CGPoint)position
+{
+  BOOL valid = ASDisplayNodeAssertNonFatal(ASIsCGPositionValidForLayout(position), @"Caught attempt to set invalid position %@ on %@.", NSStringFromCGPoint(position), self);
+  if (!valid) {
+    return;
+  }
+  
+  [super setPosition:position];
+}
+
+- (void)setTransform:(CATransform3D)transform
+{
+  BOOL valid = ASDisplayNodeAssertNonFatal(ASIsTransformValidForLayout(transform), @"Caught attempt to set invalid transform on %@.", self);
+  if (!valid) {
+    return;
+  }
+  
+  [super setTransform:transform];
 }
 
 - (void)setBounds:(CGRect)bounds
@@ -125,6 +146,8 @@
     return @YES;
   } else if ([key isEqualToString:@"opaque"]) {
     return @YES;
+  } else if ([key isEqualToString:@"contentsScale"]) {
+    return @(ASScreenScale());
   } else {
     return [super defaultValueForKey:key];
   }

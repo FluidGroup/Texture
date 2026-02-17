@@ -6,9 +6,9 @@
 //  Licensed under Apache 2.0: http://www.apache.org/licenses/LICENSE-2.0
 //
 
-#import <AsyncDisplayKit/ASExperimentalFeatures.h>
+#import "ASExperimentalFeatures.h"
 
-#import <AsyncDisplayKit/ASCollections.h>
+#import "ASCollections.h"
 
 NSArray<NSString *> *ASExperimentalFeaturesGetNames(ASExperimentalFeatures flags)
 {
@@ -23,7 +23,11 @@ NSArray<NSString *> *ASExperimentalFeaturesGetNames(ASExperimentalFeatures flags
                                       @"exp_drawing_global",
                                       @"exp_optimize_data_controller_pipeline",
                                       @"exp_disable_global_textkit_lock",
-                                      @"exp_main_thread_only_data_controller"]));
+                                      @"exp_main_thread_only_data_controller",
+                                      @"exp_range_update_on_changeset_update",
+                                      @"exp_no_text_renderer_cache",
+                                      @"exp_lock_text_renderer_cache"]));
+
   if (flags == ASExperimentalFeatureAll) {
     return allNames;
   }

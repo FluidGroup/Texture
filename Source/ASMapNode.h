@@ -8,10 +8,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <AsyncDisplayKit/ASAvailability.h>
+#import "ASAvailability.h"
 
 #if TARGET_OS_IOS && AS_USE_MAPKIT
-#import <AsyncDisplayKit/ASImageNode.h>
+#import "ASImageNode.h"
 #import <MapKit/MapKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
@@ -66,7 +66,7 @@ typedef NS_OPTIONS(NSUInteger, ASMapNodeShowAnnotationsOptions)
  
  If the live map view has been created, this may only be set on the main thread.
  */
-@property (nonatomic, weak) id <MKMapViewDelegate> mapDelegate;
+@property (nonatomic, weak) id <MKMapViewDelegate> mapDelegate NS_SWIFT_UI_ACTOR;
 
 /**
  * @abstract The annotations to display on the map.

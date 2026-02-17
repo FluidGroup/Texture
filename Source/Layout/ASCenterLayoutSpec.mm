@@ -7,7 +7,7 @@
 //  Licensed under Apache 2.0: http://www.apache.org/licenses/LICENSE-2.0
 //
 
-#import <AsyncDisplayKit/ASCenterLayoutSpec.h>
+#import "ASCenterLayoutSpec.h"
 
 @implementation ASCenterLayoutSpec
 {
@@ -17,7 +17,7 @@
 
 - (instancetype)initWithCenteringOptions:(ASCenterLayoutSpecCenteringOptions)centeringOptions
                            sizingOptions:(ASCenterLayoutSpecSizingOptions)sizingOptions
-                                   child:(id<ASLayoutElement>)child;
+                                   child:(id<ASLayoutElement>)child
 {
   ASRelativeLayoutSpecPosition verticalPosition = [self verticalPositionFromCenteringOptions:centeringOptions];
   ASRelativeLayoutSpecPosition horizontalPosition = [self horizontalPositionFromCenteringOptions:centeringOptions];

@@ -7,14 +7,14 @@
 //  Licensed under Apache 2.0: http://www.apache.org/licenses/LICENSE-2.0
 //
 
-#import <AsyncDisplayKit/ASTextLayout.h>
+#import "ASTextLayout.h"
 
-#import <AsyncDisplayKit/ASAssert.h>
-#import <AsyncDisplayKit/ASConfigurationInternal.h>
-#import <AsyncDisplayKit/ASTextUtilities.h>
-#import <AsyncDisplayKit/ASTextAttribute.h>
-#import <AsyncDisplayKit/NSAttributedString+ASText.h>
-#import <AsyncDisplayKit/ASInternalHelpers.h>
+#import "ASAssert.h"
+#import "ASConfigurationInternal.h"
+#import "ASTextUtilities.h"
+#import "ASTextAttribute.h"
+#import "NSAttributedString+ASText.h"
+#import "ASInternalHelpers.h"
 
 const CGSize ASTextContainerMaxSize = (CGSize){0x100000, 0x100000};
 
@@ -438,7 +438,7 @@ dispatch_semaphore_signal(_lock);
   
   // It may use larger constraint size when create CTFrame with
   // CTFramesetterCreateFrame in iOS 10.
-  BOOL needFixLayoutSizeBug = AS_AT_LEAST_IOS10;
+  BOOL needFixLayoutSizeBug = YES;
 
   layout = [[ASTextLayout alloc] _init];
   layout.text = text;
@@ -1597,17 +1597,17 @@ dispatch_semaphore_signal(_lock);
   
   [self _insideComposedCharacterSequences:line position:position block: ^(CGFloat left, CGFloat right, NSUInteger prev, NSUInteger next) {
     if (isVertical) {
-      position = fabs(left - point.y) < fabs(right - point.y) < (right ? prev : next);
+      position = fabs(left - point.y) < fabs(right - point.y) ? prev : next;
     } else {
-      position = fabs(left - point.x) < fabs(right - point.x) < (right ? prev : next);
+      position = fabs(left - point.x) < fabs(right - point.x) ? prev : next;
     }
   }];
-  
+
   [self _insideEmoji:line position:position block: ^(CGFloat left, CGFloat right, NSUInteger prev, NSUInteger next) {
     if (isVertical) {
-      position = fabs(left - point.y) < fabs(right - point.y) < (right ? prev : next);
+      position = fabs(left - point.y) < fabs(right - point.y) ? prev : next;
     } else {
-      position = fabs(left - point.x) < fabs(right - point.x) < (right ? prev : next);
+      position = fabs(left - point.x) < fabs(right - point.x) ? prev : next;
     }
   }];
   
@@ -2137,7 +2137,7 @@ dispatch_semaphore_signal(_lock);
       } else {
         topRect.rect = CGRectMake(_container.path ? startLine.left : _container.insets.left, startLine.top, topOffset - startLine.left, startLine.height);
       }
-      topRect.writingDirection = UITextWritingDirectionRightToLeft;
+      topRect.writingDirection = NSWritingDirectionRightToLeft;
     } else {
       if (isVertical) {
         topRect.rect = CGRectMake(startLine.left, topOffset, startLine.width, (_container.path ? startLine.bottom : _container.size.height - _container.insets.bottom) - topOffset);
@@ -2160,7 +2160,7 @@ dispatch_semaphore_signal(_lock);
       } else {
         bottomRect.rect = CGRectMake(bottomOffset, endLine.top, (_container.path ? endLine.right : _container.size.width - _container.insets.right) - bottomOffset, endLine.height);
       }
-      bottomRect.writingDirection = UITextWritingDirectionRightToLeft;
+      bottomRect.writingDirection = NSWritingDirectionRightToLeft;
     } else {
       if (isVertical) {
         CGFloat top = _container.path ? endLine.top : _container.insets.top;
