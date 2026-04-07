@@ -51,7 +51,7 @@ NS_INLINE ASConfigurationManager *ASConfigurationManagerGet() {
 
 - (void)frameworkDidInitialize
 {
-  ASDisplayNodeAssertMainThread();
+//  ASDisplayNodeAssertMainThread();  /* a obstacle to run SwiftUI Preview */
   if (_frameworkInitialized) {
     ASDisplayNodeFailAssert(@"Framework initialized twice.");
     return;
