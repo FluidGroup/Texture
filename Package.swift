@@ -41,8 +41,8 @@ func IGListKit(enabled: Bool) -> [CSetting] {
 let package = Package(
   name: "Texture",
   platforms: [
-    .macOS(.v10_15),
-    .iOS(.v10),
+    .macOS(.v12),
+    .iOS(.v17),
     .tvOS(.v10),
   ],
   products: [
